@@ -1,0 +1,81 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+@import url(https://fonts.googleapis.com/css?family=Lobster);
+
+.homepage {
+  width: 30rem;
+  padding: 10% 0 0;
+  margin: auto;
+}
+
+.form {
+  position: relative;
+  z-index: 1;
+  background: #FFFFFF;
+  max-width: 30rem;
+  margin: 0 auto 0;
+  padding: 1rem 3rem;
+  text-align: center;
+  box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.2);
+}
+
+.form .title {
+  font-family: "Lobster";
+  font-size: 2.5rem;
+  font-weight: 500;
+  color: #a35151;
+}
+
+.form input {
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #f2f2f2;
+  width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+.form input[type="submit"]  {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #CC6666;
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  color: #FFFFFF;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+
+.form button:hover,.form button:active,.form button:focus {
+  background: #b75b5b;
+}
+
+.form .message {
+  margin: 15px 0 0;
+  color: #b3b3b3;
+  font-size: 12px;
+}
+
+.form .message a {
+  color: #6aa994;
+  text-decoration: none;
+
+}
+
+
+body {
+  background: #6FA397; /* fallback for old browsers */
+  background: -webkit-radial-gradient(#6FA397, #4d7269);
+  background: -moz-radial-gradient(#6FA397, #4d7269);
+  background: -o-radial-gradient(#6FA397, #4d7269);
+  background: radial-gradient(closest-side, #6FA397, #4d7269);
+  font-family: "Roboto", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
