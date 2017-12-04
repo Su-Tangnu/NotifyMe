@@ -10,7 +10,7 @@
 .form {
   position: relative;
   z-index: 1;
-  background: #FFFFFF;
+  background: #fbfbfb;
   max-width: 30rem;
   margin: 0 auto 0;
   padding: 1rem 3rem;
@@ -28,13 +28,12 @@
 .form input {
   font-family: "Roboto", sans-serif;
   outline: 0;
-  background: #f2f2f2;
+  background: #d9d9d9;
   width: 100%;
   border: 0;
-  margin: 0 0 15px;
-  padding: 15px;
+  margin: 0 0 1rem;
+  padding: 1rem;
   box-sizing: border-box;
-  font-size: 14px;
 }
 
 .form input[type="submit"]  {
@@ -44,33 +43,36 @@
   background: #CC6666;
   width: 100%;
   border: 0;
-  padding: 15px;
+  padding: 1rem;
   color: #FFFFFF;
-  font-size: 14px;
   -webkit-transition: all 0.3 ease;
   transition: all 0.3 ease;
   cursor: pointer;
 }
 
-.form button:hover,.form button:active,.form button:focus {
-  background: #b75b5b;
+.form input[type="submit"]:hover,.form input[type="submit"]:active,.form input[type="submit"]:focus {
+  background: #a35151;
 }
 
 .form .message {
-  margin: 15px 0 0;
+  margin: 1rem 0 0;
   color: #b3b3b3;
   font-size: 12px;
 }
 
 .form .message a {
-  color: #6aa994;
-  text-decoration: none;
-
+  color: #6FA397;
 }
 
+.form .failure{
+  font-family: "Roboto", sans-serif;
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: #a35151;
+}
 
 body {
-  background: #6FA397; /* fallback for old browsers */
+  background: #6FA397;
   background: -webkit-radial-gradient(#6FA397, #4d7269);
   background: -moz-radial-gradient(#6FA397, #4d7269);
   background: -o-radial-gradient(#6FA397, #4d7269);
