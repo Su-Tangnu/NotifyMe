@@ -1,10 +1,10 @@
 <?php
 	//$server = "localhost";
-	//$db = "software_engineering_project";
+	//$db = "notifyme_db";
 	//mysqli_connect($server,$username,$password,$db);
-	$conn = mysqli_connect("localhost","root","","software_engineering_project");
-	
-	//$conn  mysql_select_db("software_engineering_project");
+	$conn = mysqli_connect("localhost","root","","notifyme_db");
+
+	//$conn  mysql_select_db("notifyme_db");
 ?>
 <html>
 	<head>
@@ -14,7 +14,7 @@
 	</head>
 	<body>
 	<div class="container">
-		<div class="jumbotron"> <h2>NOTIFY ME</h2>		
+		<div class="jumbotron"> <h2>NOTIFY ME</h2>
 		<?php echo 'Please insert the URL you wish to be notified for'?></div>
 		<?php
 			if(isset($_GET['edit_id'])){?>
@@ -30,7 +30,7 @@
 						<input type="hidden" name="edit_URL_hide" value="changed URL">
 						<input type="submit" name="edit_URL" value="Add the changed URL"class="btn btn-primary">
 					</div>
-				</form>			
+				</form>
 	<?php }
 			else{?>
 				<h6><u>Insert new URL</u></h6>
@@ -62,7 +62,7 @@
 				"
 				;
 				$count=1;
-			
+
 			while($data = mysqli_fetch_assoc($execute)){
 				/*echo $data['URL'];*/
 				echo "<br>";
@@ -73,17 +73,17 @@
 						<td><a href='$data[URL]'>Visit this page</td>
 						<td><a href='Index.php?edit_id=$data[URL]' class='btn btn-success'>Edit</button></td>
 						<td><a href='Index.php?del_id=$data[URL]' class='btn btn-danger'>Delete</button></td>
-					</tr>	
+					</tr>
 			";
 			$count++;
 			}
-			
+
 			echo "</tbody> </table>";
 	?>
-	
+
 	</div>
-	
-	
+
+
 	</body>
 </html>
 <?php
@@ -94,27 +94,27 @@
 			//$run = mysqli_query($conn , $run_sql);
 			if(mysqli_query($conn , $run_sql)){ ?>
 				<script>window.location = "Index.php"; </script>
-				<?php	
+				<?php
 			}
 	}/*
 	else{
 	echo "You can add a new URL !!";
 	}*/
-	
+
 	if(isset($_POST['edit_URL'])){
 		$del_sql = "UPDATE TABLE FROM url_list WHERE URL = '$_POST[editURL]'";
 	if(mysqli_query($conn , $del_sql)){ ?>
 				<script>window.location = "Index.php"; </script>
-				<?php	
-			}	
+				<?php
+			}
 	}
-	
+
 		if(isset($_GET['del_id'])){
 		$del_sql = "DELETE FROM url_list WHERE URL = '$_GET[del_id]'";
 	if(mysqli_query($conn , $del_sql)){ ?>
 				<script>window.location = "Index.php"; </script>
-				<?php	
-			}	
+				<?php
+			}
 	}
 <<<<<<< HEAD
 	?>

@@ -1,10 +1,10 @@
 <?php
 //$server = "localhost";
-//$db = "software_engineering_project";
+//$db = "notifyme_db";
 //mysqli_connect($server,$username,$password,$db);
-$conn = mysqli_connect("localhost","root","","software_engineering_project");
+$conn = mysqli_connect("localhost","root","","notifyme_db");
 
-//$conn  mysql_select_db("software_engineering_project");
+//$conn  mysql_select_db("notifyme_db");
 ?>
 <html>
 	<head>
@@ -56,7 +56,7 @@ if( isset($_POST['submit_LOGIN']) ){
 					 ?>
 					 <script>window.location = "Login.php"; </script>
 					 <?php
-				 
+
 				 }
 
 			}
@@ -74,12 +74,12 @@ if( isset($_POST['submit_LOGIN']) ){
 					 ?>
 					 <script>window.location = "Login.php"; </script>
 					 <?php
-				 
+
 				 }
-				
+
 			}
 			if(isset($_POST['UserName']) ){
-				
+
 			}
 		$resultUsername = mysqli_query($conn,$run_sqlUsername);
 		$rowUsername = mysqli_fetch_array($run_sqlUsername,MYSQLI_ASSOC);
@@ -90,17 +90,17 @@ if( isset($_POST['submit_LOGIN']) ){
 		if(!(is_null($rowUsername['username']))) {//row for the email_id has the username ,need to check if the entered username = the row username
 				$run_sql = "SELECT * FROM Login  WHERE email = '$EmailId' AND username='$UserName'";
 				$result = mysqli_query($conn,$run_sql);
-				$row = mysqli_fetch_array($result,MYSQLI_ASSOC);      
+				$row = mysqli_fetch_array($result,MYSQLI_ASSOC);
 				$count = mysqli_num_rows($result);
 				//corresponding to the username a row was found
 				if($count == 1) {
-					
-					
-					
+
+
+
 					?>
 					<script>window.location = "Index.php"; </script>
 					<?php
-						 
+
 				 }
 				 //corresponding to the username no row was found
 				 else{
@@ -109,25 +109,25 @@ if( isset($_POST['submit_LOGIN']) ){
 						 ?>
 						 <script>window.location = "Login.php"; </script>
 						 <?php
-				 
+
 				 }
-		
+
 		}
 		//This else  would mean that username does not exist, so in else check if password would check
 		else{
 			$resultPassword = mysqli_query($conn,$run_sqlPassword);
 			$rowPassword = mysqli_fetch_array($run_sqlPassword,MYSQLI_ASSOC);
-			
+
 			if(!(is_null($rowUsername['password']))) {//row for the email_id has the password ,need to check if the entered password = the row password
 				$run_sql = "SELECT * FROM Login  WHERE email = '$EmailId' AND password='$UserName'";
 				$result = mysqli_query($conn,$run_sql);
-				$row = mysqli_fetch_array($result,MYSQLI_ASSOC);      
+				$row = mysqli_fetch_array($result,MYSQLI_ASSOC);
 				$count = mysqli_num_rows($result);
 				//Found a row for a password
 				if($count == 1) {?>
 					<script>window.location = "Index.php"; </script>
 					<?php
-						 
+
 				 }
 				 else{
 						 echo "Invalid Login,Wrong Password";
@@ -135,13 +135,13 @@ if( isset($_POST['submit_LOGIN']) ){
 						 ?>
 						 <script>window.location = "Login.php"; </script>
 						 <?php
-				 
+
 				 }
-		
+
 		}
 		}
 
-	
+
 	}
 	else{//There is no row for the entered emailID , That means entered value is wrong
 		 echo "Invalid Login,Wrong Email Id";
@@ -150,7 +150,7 @@ if( isset($_POST['submit_LOGIN']) ){
 		 <script>window.location = "Login.php"; </script>
 		 <?php
 	}
-	
+
 }
 
 
