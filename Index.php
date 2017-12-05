@@ -28,9 +28,7 @@
           		$result_sqlCorrectLogin = mysqli_query($conn,$run_sqlCorrectLogin);
               $count = mysqli_num_rows($result_sqlCorrectLogin);
           		if($count == 1) {
-          			?>
-          			<script>window.location = "userHomepage.php"; </script>
-          			<?php
+          			echo "<script>window.location = \"userHomepage.php/?email=$EmailId\"; </script>";
           		}
           		else {
                 ?>
