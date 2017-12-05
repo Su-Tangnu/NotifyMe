@@ -16,7 +16,6 @@
         	//$db = "notifyme_db";
         	//mysqli_connect($server,$username,$password,$db);
         	$conn = mysqli_connect("localhost","root","","notifyme_db");
-        	//$conn  mysql_select_db("notifyme_db");
         	if( isset($_POST['email']) && isset($_POST['pass']) ){
         		$EmailId = mysqli_real_escape_string($conn,strip_tags($_POST['email']));
         		$Password = mysqli_real_escape_string($conn,strip_tags($_POST['pass']));
