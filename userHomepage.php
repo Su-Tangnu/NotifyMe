@@ -49,9 +49,8 @@
 			<?php
 		}
 			echo "<br> <br> <br>";
-			$sql = "SELECT * FROM user_url_list WHERE email = $EmailId";
+			$sql = "SELECT * FROM user_url_list WHERE email = '$EmailId'";
 			$execute = mysqli_query($conn,$sql);
-			echo "Execute: $execute";
 			echo"
 				<table class='table'>
 					<thead>
@@ -66,28 +65,28 @@
 				"
 				;
 				$count=1;
-			if($execute){
-				echo "In if";
+				if($execute)
+				{
 				while($data = mysqli_fetch_assoc($execute)){
-					/*echo $data['URL'];*/
-					echo "<br>";
-					echo "
-						<tr>
-							<td>$count</td>
-							<td>$data[url]</td>";?>
-							<?php if((substr($data['url'],0,4)!='HTTP')&&(substr($data['url'],0,4)!='http')&&(substr($data['url'],0,4)!='HTTPS')&&(substr($data['url'],0,4)!='https')){?>
-							<?php echo "<td><a href='https://";?><?php echo $data['url'];?><?php echo"'>Visit this page</td>";}?>
+				/*echo $data['URL'];*/
+				echo "<br>";
+				echo "
+					<tr>
+						<td>$count</td>
+						<td>$data[url]</td>";?>
+						<?php if((substr($data['url'],0,4)!='HTTP')&&(substr($data['url'],0,4)!='http')&&(substr($data['url'],0,4)!='HTTPS')&&(substr($data['url'],0,4)!='https')){?>
+						<?php echo "<td><a href='https://";?><?php echo $data['url'];?><?php echo"'>Visit this page</td>";}?>
 
-							<?php if((substr($data['url'],0,4)=='HTTP')||(substr($data['url'],0,4)=='http')||(substr($data['url'],0,4)=='HTTPS')||(substr($data['url'],0,4)=='https')){?>
-							<?php echo "<td><a href='";?><?php echo $data['url'];?><?php echo"'>Visit this page</td>";}?>
-							<?php echo"
-							<td><a href='userHomepage.php?email=$EmailId&edit_id=$data[url]' class='btn btn-success'>Edit</button></td>
-							<td><a href='userHomepage.php?email=$EmailId&del_id=$data[url]' class='btn btn-danger'>Delete</button></td>
-						</tr>
-				";
-				$count++;
-				}
+						<?php if((substr($data['url'],0,4)=='HTTP')||(substr($data['url'],0,4)=='http')||(substr($data['url'],0,4)=='HTTPS')||(substr($data['url'],0,4)=='https')){?>
+						<?php echo "<td><a href='";?><?php echo $data['url'];?><?php echo"'>Visit this page</td>";}?>
+						<?php echo"
+						<td><a href='userHomepage.php?email=$EmailId&edit_id=$data[url]' class='btn btn-success'>Edit</button></td>
+						<td><a href='userHomepage.php?email=$EmailId&del_id=$data[url]' class='btn btn-danger'>Delete</button></td>
+					</tr>
+			";
+			$count++;
 			}
+		}
 
 			echo "</tbody> </table>";
 	?>
@@ -104,7 +103,7 @@
 			$run_sql_urls = "INSERT INTO urls (url) VALUES ('$newURLVal')";
 			$run_sql_user_url_list = "INSERT INTO user_url_list (email, url) VALUES ('$EmailId','$newURLVal')";
 			//$run = mysqli_query($conn , $run_sql);
-			if(mysqli_query($conn , $run_sql_urls) && mysqli_query($conn , $run_sql_user_url_list)){
+			if(mysqli_query($conn , $run_sql_user_url_list)){
 				echo "<script>window.location = \"userHomepage.php/?email=$EmailId\"; </script>";
 			}
 	}/*
@@ -112,17 +111,24 @@
 	echo "You can add a new URL !!";
 	}*/
 
-	if(isset($_POST['edit_URL'])){
+	if(isset($_POST['edit_CANCEL'])){
+				echo "<script>window.location = \"userHomepage.php/?email=$EmailId\"; </script>";
+
+	}
+		if(isset($_POST['edit_URL'])){
 	$editdURL = mysqli_real_escape_string($conn,strip_tags($_POST['editURL']));
-	$edit_sql = "UPDATE urls SET url = '$editdURL'";
-	if(mysqli_query($conn , $edit_sql)){
+	$edit_sql_user_url_list = "UPDATE user_url_list url = '$editdURL' where email='$EmailId' and url='$_GET[edit_id]'";
+	$edit_sql_urls = "UPDATE urls SET url = '$editdURL' where url='$_GET[edit_id]' ";	
+	//if(mysqli_query($conn , $edit_sql_urls) && mysqli_query($conn , $edit_sql_user_url_list)){
+	if(mysqli_query($conn , $edit_sql_user_url_list)){
 				echo "<script>window.location = \"userHomepage.php/?email=$EmailId\"; </script>";
 			}
 	}
 
 		if(isset($_GET['del_id'])){
 		$del_sql = "DELETE FROM urls WHERE url = '$_GET[del_id]'";
-	if(mysqli_query($conn , $del_sql)){
+		$del_sql_user_url_list = "DELETE FROM user_url_list where url= '$_GET[del_id]'";
+	if(mysqli_query($conn , $del_sql) && mysqli_query($conn , $del_sql_user_url_list)){
 				echo "<script>window.location = \"userHomepage.php/?email=$EmailId\"; </script>";
 			}
 	}
