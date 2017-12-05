@@ -29,14 +29,18 @@
     }
   }
 
-  $sql_users_to_email = "SELECT users.email
+ /* $sql_users_to_email = "SELECT users.email
                          FROM users
                          INNER JOIN user_url_list ON users.email = user_url_list.email
                          INNER JOIN urls ON urls.url = user_url_list.url
-                         WHERE urls.updated = 1";
+                         WHERE urls.updated = 1";*/
+  $sql_users_to_email = "SELECT user_url_list.email 
+                         FROM user_url_list
+                         INNER JOIN urls ON urls.url = user_url_list.url
+                         WHERE urls.updated = 1";					 
   $execute_users_to_email = mysqli_query($conn,$sql_users_to_email);
   if($execute_users_to_email){
-    while($emails = mysqli_fetch_assoc($execute_urls_info)){
+    while($emails = mysqli_fetch_assoc($execute_users_to_email)){
       // the message
       $msg = "You have websites that have updated!\n
               Come see which ones at NotifyMe!";
