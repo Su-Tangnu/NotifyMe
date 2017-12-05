@@ -49,8 +49,9 @@
 			<?php
 		}
 			echo "<br> <br> <br>";
-			$sql = "SELECT * FROM user_url_list WHERE email = $EmailId;";
+			$sql = "SELECT * FROM user_url_list WHERE email = $EmailId";
 			$execute = mysqli_query($conn,$sql);
+			echo "Execute: $execute";
 			echo"
 				<table class='table'>
 					<thead>
@@ -65,25 +66,27 @@
 				"
 				;
 				$count=1;
+			if($execute){
+				echo "In if";
+				while($data = mysqli_fetch_assoc($execute)){
+					/*echo $data['URL'];*/
+					echo "<br>";
+					echo "
+						<tr>
+							<td>$count</td>
+							<td>$data[url]</td>";?>
+							<?php if((substr($data['url'],0,4)!='HTTP')&&(substr($data['url'],0,4)!='http')&&(substr($data['url'],0,4)!='HTTPS')&&(substr($data['url'],0,4)!='https')){?>
+							<?php echo "<td><a href='https://";?><?php echo $data['url'];?><?php echo"'>Visit this page</td>";}?>
 
-			while($data = mysqli_fetch_assoc($execute)){
-				/*echo $data['URL'];*/
-				echo "<br>";
-				echo "
-					<tr>
-						<td>$count</td>
-						<td>$data[URL]</td>";?>
-						<?php if((substr($data['URL'],0,4)!='HTTP')&&(substr($data['URL'],0,4)!='http')&&(substr($data['URL'],0,4)!='HTTPS')&&(substr($data['URL'],0,4)!='https')){?>
-						<?php echo "<td><a href='https://";?><?php echo $data['URL'];?><?php echo"'>Visit this page</td>";}?>
-
-						<?php if((substr($data['URL'],0,4)=='HTTP')||(substr($data['URL'],0,4)=='http')||(substr($data['URL'],0,4)=='HTTPS')||(substr($data['URL'],0,4)=='https')){?>
-						<?php echo "<td><a href='";?><?php echo $data['URL'];?><?php echo"'>Visit this page</td>";}?>
-						<?php echo"
-						<td><a href='userHomepage.php?email=$EmailId&edit_id=$data[URL]' class='btn btn-success'>Edit</button></td>
-						<td><a href='userHomepage.php?email=$EmailId&del_id=$data[URL]' class='btn btn-danger'>Delete</button></td>
-					</tr>
-			";
-			$count++;
+							<?php if((substr($data['url'],0,4)=='HTTP')||(substr($data['url'],0,4)=='http')||(substr($data['url'],0,4)=='HTTPS')||(substr($data['url'],0,4)=='https')){?>
+							<?php echo "<td><a href='";?><?php echo $data['url'];?><?php echo"'>Visit this page</td>";}?>
+							<?php echo"
+							<td><a href='userHomepage.php?email=$EmailId&edit_id=$data[url]' class='btn btn-success'>Edit</button></td>
+							<td><a href='userHomepage.php?email=$EmailId&del_id=$data[url]' class='btn btn-danger'>Delete</button></td>
+						</tr>
+				";
+				$count++;
+				}
 			}
 
 			echo "</tbody> </table>";
