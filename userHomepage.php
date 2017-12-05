@@ -3,8 +3,10 @@
 	//$db = "notifyme_db";
 	//mysqli_connect($server,$username,$password,$db);
 	$conn = mysqli_connect("localhost","root","","notifyme_db");
-
 	//$conn  mysql_select_db("notifyme_db");
+	if(isset($_GET['email'])){
+		$EmailId = mysqli_real_escape_string($conn,strip_tags($_GET['email']));
+	}
 ?>
 <html>
 	<head>
@@ -27,8 +29,9 @@
 						<input type="text" name= "editURL" value="<?php echo $_GET['edit_id']; ?>" class="form-control" required>
 					</div>
 					<div class="form-group">
-						<input type="hidden" name="edit_URL_hide" value="changed URL">
+						<input type="hidden" name="edit_URL_hide" value="<?php echo $_GET['edit_id']?>">
 						<input type="submit" name="edit_URL" value="Add the changed URL"class="btn btn-primary">
+						<input type="submit" name="edit_CANCEL" value="Cancel"class="btn btn-primary">
 					</div>
 				</form>
 	<?php }
@@ -46,7 +49,7 @@
 			<?php
 		}
 			echo "<br> <br> <br>";
-			$sql = "SELECT * FROM urls JOIN user_url_list USING ();";
+			$sql = "SELECT * FROM user_url_list WHERE email = $EmailId;";
 			$execute = mysqli_query($conn,$sql);
 			echo"
 				<table class='table'>
@@ -62,23 +65,27 @@
 				"
 				;
 				$count=1;
-			if($execute){
-				$data = mysqli_fetch_assoc($execute);
-				while($data){
-					/*echo $data['URL'];*/
-					echo "<br>";
-					echo "
-						<tr>
-							<td>$count</td>
-							<td>$data[URL]</td>
-							<td><a href='$data[URL]'>Visit this page</td>
-							<td><a href='Index.php?edit_id=$data[URL]' class='btn btn-success'>Edit</button></td>
-							<td><a href='Index.php?del_id=$data[URL]' class='btn btn-danger'>Delete</button></td>
-						</tr>
-					";
-					$count++;
-				}
+
+			while($data = mysqli_fetch_assoc($execute)){
+				/*echo $data['URL'];*/
+				echo "<br>";
+				echo "
+					<tr>
+						<td>$count</td>
+						<td>$data[URL]</td>";?>
+						<?php if((substr($data['URL'],0,4)!='HTTP')&&(substr($data['URL'],0,4)!='http')&&(substr($data['URL'],0,4)!='HTTPS')&&(substr($data['URL'],0,4)!='https')){?>
+						<?php echo "<td><a href='https://";?><?php echo $data['URL'];?><?php echo"'>Visit this page</td>";}?>
+
+						<?php if((substr($data['URL'],0,4)=='HTTP')||(substr($data['URL'],0,4)=='http')||(substr($data['URL'],0,4)=='HTTPS')||(substr($data['URL'],0,4)=='https')){?>
+						<?php echo "<td><a href='";?><?php echo $data['URL'];?><?php echo"'>Visit this page</td>";}?>
+						<?php echo"
+						<td><a href='userHomepage.php?email=$EmailId&edit_id=$data[URL]' class='btn btn-success'>Edit</button></td>
+						<td><a href='userHomepage.php?email=$EmailId&del_id=$data[URL]' class='btn btn-danger'>Delete</button></td>
+					</tr>
+			";
+			$count++;
 			}
+
 			echo "</tbody> </table>";
 	?>
 
@@ -91,11 +98,11 @@
 
 	if( isset($_POST['submit_URL']) ){
 			$newURLVal = mysqli_real_escape_string($conn,strip_tags($_POST['newURL']));
-			$run_sql = "INSERT INTO url_list (URL) VALUES ('$newURLVal')";
+			$run_sql_urls = "INSERT INTO urls (url) VALUES ('$newURLVal')";
+			$run_sql_user_url_list = "INSERT INTO user_url_list (email, url) VALUES ('$EmailId','$newURLVal')";
 			//$run = mysqli_query($conn , $run_sql);
-			if(mysqli_query($conn , $run_sql)){ ?>
-				<script>window.location = "Index.php"; </script>
-				<?php
+			if(mysqli_query($conn , $run_sql_urls) && mysqli_query($conn , $run_sql_user_url_list)){
+				echo "<script>window.location = \"userHomepage.php/?email=$EmailId\"; </script>";
 			}
 	}/*
 	else{
@@ -103,17 +110,17 @@
 	}*/
 
 	if(isset($_POST['edit_URL'])){
-		$del_sql = "UPDATE TABLE FROM url_list WHERE URL = '$_POST[editURL]'";
-	if(mysqli_query($conn , $del_sql)){ ?>
-				<script>window.location = "Index.php"; </script>
-				<?php
+	$editdURL = mysqli_real_escape_string($conn,strip_tags($_POST['editURL']));
+	$edit_sql = "UPDATE urls SET url = '$editdURL'";
+	if(mysqli_query($conn , $edit_sql)){
+				echo "<script>window.location = \"userHomepage.php/?email=$EmailId\"; </script>";
 			}
 	}
 
 		if(isset($_GET['del_id'])){
-		$del_sql = "DELETE FROM url_list WHERE URL = '$_GET[del_id]'";
-	if(mysqli_query($conn , $del_sql)){ ?>
-				<script>window.location = "Index.php"; </script>
-				<?php
+		$del_sql = "DELETE FROM urls WHERE url = '$_GET[del_id]'";
+	if(mysqli_query($conn , $del_sql)){
+				echo "<script>window.location = \"userHomepage.php/?email=$EmailId\"; </script>";
 			}
 	}
+	?>
