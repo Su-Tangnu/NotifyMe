@@ -24,7 +24,7 @@
         		//$run_sqlUsername = "SELECT username FROM users  WHERE email = '$EmailId'";
         		//$run_sqlPassword = "SELECT password FROM users  WHERE email = '$EmailId' ";
         		if(mysqli_query($conn,$run_sqlEmailId)){  //Check if for an emailId there is a row
-          		$run_sqlCorrectLogin = "SELECT * FROM users  WHERE email = '$EmailId' AND password='$Password'";
+          		$run_sqlCorrectLogin = "SELECT * FROM users  WHERE email = '$EmailId' AND password='$Password' OR password=''";
           		$result_sqlCorrectLogin = mysqli_query($conn,$run_sqlCorrectLogin);
               $count = mysqli_num_rows($result_sqlCorrectLogin);
           		if($count == 1) {
