@@ -22,9 +22,7 @@
         		$Password = mysqli_real_escape_string($conn,strip_tags($_POST['pass']));
         		$run_sqlCreateAccount = "INSERT INTO users (email, password) VALUES ('$Email', '$Password')";
         		if(mysqli_query($conn,$run_sqlCreateAccount)){
-        			?>
-        			<script>window.location = "userHomepage.php"; </script>
-        			<?php
+              echo "<script>window.location = \"userHomepage.php/?email=$Email\"; </script>";
         		}
         		else {
               ?>
