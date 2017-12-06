@@ -42,19 +42,24 @@
                          INNER JOIN user_url_list ON users.email = user_url_list.email
                          INNER JOIN urls ON urls.url = user_url_list.url
                          WHERE urls.updated = 1";*/
-  $sql_users_to_email = "SELECT user_url_list.email
+  /*$sql_users_to_email = "SELECT user_url_list.email
                          FROM user_url_list
                          INNER JOIN urls ON urls.url = user_url_list.url
-                         WHERE urls.updated = 1";
+                         WHERE urls.updated = 1";*/
+  $sql_users_to_email = "SELECT *
+                         FROM user_url_list , urls
+                         WHERE  urls.url = user_url_list.url
+                         AND urls.updated = 1";
+
   $execute_users_to_email = mysqli_query($conn,$sql_users_to_email);
   if($execute_users_to_email){
-    while($emails = mysqli_fetch_assoc($execute_users_to_email)){
+    while($emails_url = mysqli_fetch_assoc($execute_users_to_email)){
       // the message
-      $msg = "You have websites that have updated!\nCome see which ones at NotifyMe!";
+      $msg = $emails_url['url'];
       // use wordwrap() if lines are longer than 70 characters
       $msg = wordwrap($msg,70);
       // send email
-      $sent = mail($emails['email'],"Websites Have Updated!",$msg);
+      $sent = mail($emails_url['email'],"Websites Have Updated!",$msg);
     }
   }
 ?>
