@@ -16,6 +16,7 @@
 	</head>
 	<body>
 	<div class="container">
+		<a href="/Learn_Php">Logout</a>
 		<div class="jumbotron"> <h2>NOTIFY ME</h2>
 		<?php echo 'Please insert the URL you wish to be notified for'?></div>
 		<?php
