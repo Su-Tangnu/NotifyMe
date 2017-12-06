@@ -1,0 +1,83 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+@import url(https://fonts.googleapis.com/css?family=Lobster);
+
+.homepage {
+  width: 30rem;
+  padding: 10% 0 0;
+  margin: auto;
+}
+
+.form {
+  position: relative;
+  z-index: 1;
+  background: #fbfbfb;
+  max-width: 30rem;
+  margin: 0 auto 0;
+  padding: 1rem 3rem;
+  text-align: center;
+  box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.2);
+}
+
+.form .title {
+  font-family: "Lobster";
+  font-size: 2.5rem;
+  font-weight: 500;
+  color: #a35151;
+}
+
+.form input {
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #d9d9d9;
+  width: 100%;
+  border: 0;
+  margin: 0 0 1rem;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.form input[type="submit"]  {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #CC6666;
+  width: 100%;
+  border: 0;
+  padding: 1rem;
+  color: #FFFFFF;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+
+.form input[type="submit"]:hover,.form input[type="submit"]:active,.form input[type="submit"]:focus {
+  background: #a35151;
+}
+
+.form .message {
+  margin: 1rem 0 0;
+  color: #b3b3b3;
+  font-size: 12px;
+}
+
+.form .message a {
+  color: #6FA397;
+}
+
+.form .failure{
+  font-family: "Roboto", sans-serif;
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: #a35151;
+}
+
+body {
+  background: #6FA397;
+  background: -webkit-radial-gradient(#6FA397, #4d7269);
+  background: -moz-radial-gradient(#6FA397, #4d7269);
+  background: -o-radial-gradient(#6FA397, #4d7269);
+  background: radial-gradient(closest-side, #6FA397, #4d7269);
+  font-family: "Roboto", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
