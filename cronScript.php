@@ -4,8 +4,7 @@
   $execute_urls_info = mysqli_query($conn,$sql_urls_info);
   if($execute_urls_info){
     while($data = mysqli_fetch_assoc($execute_urls_info)){
-      $headers = get_headers($data['url'], 1);
-      if($headers){
+      if($headers = get_headers($data['url'], 1)){
         if(array_key_exists("Last-Modified", $headers) && ($headers["Last-Modified"] == $data["last-modified"])){
           $sql_update = "UPDATE urls SET updated = '0' WHERE url = $data[url]";
           $execute_update = mysqli_query($conn,$sql_update);
