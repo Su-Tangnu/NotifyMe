@@ -5,33 +5,35 @@
   if($execute_urls_info){
     while($data = mysqli_fetch_assoc($execute_urls_info)){
       $headers = get_headers($data['url'], 1);
-      if(array_key_exists("Last-Modified", $headers) && ($headers["Last-Modified"] == $data["last-modified"])){
-        $sql_update = "UPDATE urls SET updated = '0' WHERE url = $data[url]";
-        $execute_update = mysqli_query($conn,$sql_update);
-        if($execute_update){
-          echo "Not updated based on Last-Modified.";
+      if($headers){
+        if(array_key_exists("Last-Modified", $headers) && ($headers["Last-Modified"] == $data["last-modified"])){
+          $sql_update = "UPDATE urls SET updated = '0' WHERE url = $data[url]";
+          $execute_update = mysqli_query($conn,$sql_update);
+          if($execute_update){
+            echo "Not updated based on Last-Modified.";
+          }
         }
-      }
-      elseif (array_key_exists("ETag", $headers) && ($headers["ETag"] == $data["etag"])) {
-        $sql_update = "UPDATE urls SET updated = '0' WHERE url = $data[url]";
-        $execute_update = mysqli_query($conn,$sql_update);
-        if($execute_update){
-          echo "Not updated based on Etag.";
+        elseif (array_key_exists("ETag", $headers) && ($headers["ETag"] == $data["etag"])) {
+          $sql_update = "UPDATE urls SET updated = '0' WHERE url = $data[url]";
+          $execute_update = mysqli_query($conn,$sql_update);
+          if($execute_update){
+            echo "Not updated based on Etag.";
+          }
         }
-      }
-      elseif (array_key_exists("Last-Modified", $headers)){
-        $lastModified = "Last-Modified";
-        $sql_update = "UPDATE urls SET last-modified = '$headers[$lastModified]', updated = '1' WHERE url = $data[url]";
-        $execute_update = mysqli_query($conn,$sql_update);
-        if($execute_update){
-          echo "Updated $data[url] based on Last-Modified.";
+        elseif (array_key_exists("Last-Modified", $headers)){
+          $lastModified = "Last-Modified";
+          $sql_update = "UPDATE urls SET last-modified = '$headers[$lastModified]', updated = '1' WHERE url = $data[url]";
+          $execute_update = mysqli_query($conn,$sql_update);
+          if($execute_update){
+            echo "Updated $data[url] based on Last-Modified.";
+          }
         }
-      }
-      elseif(array_key_exists("ETag", $headers)){
-        $sql_update = "UPDATE urls SET etag = '$headers[ETag]', updated = '1' WHERE url = $data[url]";
-        $execute_update = mysqli_query($conn,$sql_update);
-        if($execute_update){
-          echo "Updated $data[url] based on ETag.";
+        elseif(array_key_exists("ETag", $headers)){
+          $sql_update = "UPDATE urls SET etag = '$headers[ETag]', updated = '1' WHERE url = $data[url]";
+          $execute_update = mysqli_query($conn,$sql_update);
+          if($execute_update){
+            echo "Updated $data[url] based on ETag.";
+          }
         }
       }
     }
