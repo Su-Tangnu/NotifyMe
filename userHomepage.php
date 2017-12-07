@@ -7,7 +7,6 @@
 	//$conn  mysql_select_db("notifyme_db");
 	if(array_key_exists("email", $_SESSION)){
 		$Email = $_SESSION["email"];
-		$Password = $_SESSION["pass"];
 	}
 	else{
 		echo "<script>window.location = \"Index.php\"; </script>";

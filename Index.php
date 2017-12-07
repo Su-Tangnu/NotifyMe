@@ -23,11 +23,10 @@
         	if( isset($_POST['email']) && isset($_POST['pass']) ){
         		$Email = mysqli_real_escape_string($conn,strip_tags($_POST['email']));
             $_SESSION["email"] = $Email;
-        		$Password = mysqli_real_escape_string($conn,strip_tags($_POST['pass']));
-            $_SESSION["pass"] = $Password;
+            //$Pass = password_hash($_POST['pass'], PASSWORD_DEFAULT);
+            $Pass = $_POST['pass'];
+        		$Password = mysqli_real_escape_string($conn,strip_tags($Pass));
         		$run_sqlEmailId = "SELECT * FROM users WHERE email = '$Email'";
-        		//$run_sqlUsername = "SELECT username FROM users  WHERE email = '$Email'";
-        		//$run_sqlPassword = "SELECT password FROM users  WHERE email = '$Email' ";
         		if(mysqli_query($conn,$run_sqlEmailId)){  //Check if for an emailId there is a row
           		$run_sqlCorrectLogin = "SELECT * FROM users  WHERE email = '$Email' AND password='$Password'";
           		$result_sqlCorrectLogin = mysqli_query($conn,$run_sqlCorrectLogin);

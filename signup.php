@@ -23,8 +23,9 @@
         	if( isset($_POST['email']) && isset($_POST['pass']) ){
         		$Email = mysqli_real_escape_string($conn,strip_tags($_POST['email']));
             $_SESSION["email"] = $Email;
-        		$Password = mysqli_real_escape_string($conn,strip_tags($_POST['pass']));
-            $_SESSION["pass"] = $Password;
+            //$Pass = password_hash($_POST['pass'], PASSWORD_DEFAULT);
+            $Pass = $_POST['pass'];
+        		$Password = mysqli_real_escape_string($conn,strip_tags($Pass));
         		$run_sqlCreateAccount = "INSERT INTO users (email, password) VALUES ('$Email', '$Password')";
         		if(mysqli_query($conn,$run_sqlCreateAccount)){
               echo "<script>window.location = \"userHomepage.php/\"; </script>";

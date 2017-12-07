@@ -22,11 +22,15 @@
         	//$conn  mysql_select_db("notifyme_db");
         	if( isset($_POST['oldPass']) && isset($_POST['newPass']) && isset($_POST['newPassVerify'])){
         		if($_POST['newPass'] == $_POST['newPassVerify']){  //Check that the new passwords are the same
-          		$run_sqlCheckOldPass = "SELECT * FROM users WHERE email = '$_SESSION[email]' AND password='$_POST[oldPass]'";
+              //$OldPass = password_hash($_POST['oldPass'], PASSWORD_DEFAULT);
+              $OldPass = $_POST['oldPass'];
+              $run_sqlCheckOldPass = "SELECT * FROM users WHERE email = '$_SESSION[email]' AND password='$OldPass'";
           		$result_sqlCheckOldPass = mysqli_query($conn,$run_sqlCheckOldPass);
               $count = mysqli_num_rows($result_sqlCheckOldPass);
           		if($count == 1) {
-                $run_sqlChangePass = "UPDATE users SET password = '$_POST[newPass]' where email = '$_SESSION[email]'";
+                //$NewPass = password_hash($_POST['newPass'], PASSWORD_DEFAULT);
+                $NewPass = $_POST['newPass'];
+                $run_sqlChangePass = "UPDATE users SET password = '$NewPass' where email = '$_SESSION[email]'";
             		if($result_sqlChangePass = mysqli_query($conn,$run_sqlChangePass)){
                   ?>
                   <div class="failure">
@@ -35,6 +39,17 @@
                     Click <a href="/NotifyMe/userHomepage.php">
           						here
           					</a>
+                    to go back!
+                  </div>
+                  <?php
+                }
+                else{
+                  ?>
+                  <div class="failure">
+                    New password is bad!  Please try again or click
+                    <a href="/NotifyMe/userHomepage.php">
+            						here
+            				</a>
                     to go back!
                   </div>
                   <?php
