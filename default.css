@@ -1,10 +1,90 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+@import url(https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700);
 @import url(https://fonts.googleapis.com/css?family=Lobster);
+
+body {
+  background: #6FA397;
+  background: -webkit-radial-gradient(#6FA397, #4d7269);
+  background: -moz-radial-gradient(#6FA397, #4d7269);
+  background: -o-radial-gradient(#6FA397, #4d7269);
+  background: radial-gradient(closest-side, #6FA397, #4d7269);
+  font-family: "Roboto", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
 .homepage {
   width: 30rem;
   padding: 10% 0 0;
   margin: auto;
+}
+
+.userpage {
+  padding: 0 3% 0;
+  margin: 0 10% 0;
+  background: #eeeeee;
+}
+
+.banner {
+  font-family: "Lobster";
+  font-size: 5rem;
+  font-weight: 500;
+  color: #a35151;
+  z-index: 1;
+  background: #d4d4d4;
+  margin: 0 auto 0;
+  padding: 1rem 3rem;
+  text-align: center;
+}
+
+.subbanner {
+  font-family: "Roboto", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #a35151;
+  z-index: 1;
+  background: #d4d4d4;
+  margin: 0 auto 0;
+  padding: 1rem 3rem;
+  text-align: center;
+}
+
+.break {
+  z-index: 1;
+  margin: 0 auto 0;
+  padding: 1rem 3rem;
+  text-align: center;
+}
+
+.body {
+  font-family: "Roboto", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #a35151;
+  z-index: 1;
+  margin: 0 auto 0;
+  padding: 1rem 1rem;
+  text-align: center;
+}
+
+.subbody {
+  font-family: "Roboto", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #a35151;
+  z-index: 1;
+  margin: 0 auto 0;
+  text-align: center;
+}
+
+.form .url-form {
+  font-family: "Roboto", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #a35151;
+  z-index: 1;
+  margin: 0 auto 0;
+  padding: 1rem 1rem;
+  text-align: center;
 }
 
 .form {
@@ -96,15 +176,4 @@
 
 .form .subsubmessage a {
   color: #6FA397;
-}
-
-body {
-  background: #6FA397;
-  background: -webkit-radial-gradient(#6FA397, #4d7269);
-  background: -moz-radial-gradient(#6FA397, #4d7269);
-  background: -o-radial-gradient(#6FA397, #4d7269);
-  background: radial-gradient(closest-side, #6FA397, #4d7269);
-  font-family: "Roboto", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
