@@ -1,7 +1,7 @@
 <?php
   session_start();
   // remove all session variables
-  session_unset(); 
+  session_unset();
   // destroy the session
   session_destroy();
 ?>
@@ -12,11 +12,13 @@
     <link rel="stylesheet" type="text/css" href="default.css">
   </head>
   <body>
-    You have been successfully logged out.
-    </br>
-    Click
-    <a href="./Index.php">
-      here
-    </a>
-    to log back in.
+    <div class=form>
+      You have been successfully logged out.
+      </br>
+      Click
+      <a href="/NotifyMe/Index.php">
+        here
+      </a>
+      to log back in.
+    </div>
   </body>
