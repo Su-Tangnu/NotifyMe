@@ -69,7 +69,7 @@
 						<input type="text" name= "newURL" class="form-control" required>
 					</div>
 					<div class="form-group">
-						<input type="submit" name="submit_URL"class="btn btn-primary">
+						<input type="submit" name="submit_URL" value="Submit" placeholder="Submit" class="btn btn-primary">
 					</div>
 				</form>
 			<?php

@@ -38,7 +38,7 @@
         		elseif(mysqli_query($conn,"INSERT INTO users (email, password) VALUES ('$Email', '$Password')")){
               mysqli_query($conn,"DELETE FROM users WHERE email='$Email' AND password='$Password')");
               ?>
-              <div class="failure">
+              <div class="message">
                 Sign up failed!  That username is already taken.
                 Please select a new username and try again!
               </div>
@@ -46,8 +46,12 @@
         		}
             else{
               ?>
-              <div class="failure">
-                Sign up failed!  That email address already has an account.
+              <div class="message">
+                Sign up failed!
+              </div>
+              <div class="submessage">
+                That email address already has an account.
+                </br>
                 Please enter a new email address and try again!
               </div>
               <?php
@@ -58,9 +62,11 @@
           <input type="text" name="email" placeholder="Email"/>
           <input type="text" name="username" placeholder="Username (optional)"/>
           <input type="password" name="pass" placeholder="Password (optional)"/>
-          <input type="submit" placeholder="SIGN UP"/>
+          <input type="submit" value="SIGN UP" placeholder="SIGN UP"/>
         </form>
-        <p class="message">Already a user? <a href="index.php">Log In</a></p>
+        <div class="submessage">
+          Already a user? <a href="index.php">Log In</a>
+        </div>
       </div>
     </div>
   </body>

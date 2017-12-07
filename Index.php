@@ -36,28 +36,24 @@
           			echo "<script>window.location = \"userHomepage.php\"; </script>";
           		}
           		else {
+                $_POST["login"] = "false";
                 ?>
-                <div class="failure">
-                  Login failed!  Please check your credentials and try again!
+                <div class="message">
+                  Login failed!
                 </div>
-                </br>
                 <div class="submessage">
-                  Having trouble remembering your email?
-                  </br>
-                  <a href="accountRecovery.php">Try recovering your account here.</a>
+                  Please check your credentials and try again!
                 </div>
                 <?php
           		}
         		}
             else{
+              $_POST["login"] = "false";
               ?>
-              <div class="failure">
+              <div class="message">
                 Login failed!  That email or username is not in our database.
                 Please check your credentials and try again!
               </div>
-              </br>
-              Having trouble remembering your email?
-              <a href="accountRecovery.php">Try recovering your account here.</a>
               <?php
             }
           }
@@ -65,9 +61,22 @@
         <form method="post" class="login-form">
           <input type="text" name="email" placeholder="Username or Email"/>
           <input type="password" name="pass" placeholder="Password"/>
-          <input type="submit" placeholder="LOGIN"/>
+          <input type="submit" value="LOGIN" placeholder="LOGIN"/>
         </form>
-        <p class="message">Not registered? <a href="signup.php">Create an account</a></p>
+        <div class="submessage">
+        <?php
+          if(isset($_POST["login"])){
+            ?>
+            Having trouble remembering your password?
+            </br>
+            <a href="accountRecovery.php">Try recovering your account here.</a>
+            </br>
+            </br>
+        <?php
+          }
+          ?>
+          Not registered? <a href="signup.php">Create an account</a>
+        </div>
       </div>
     </div>
   </body>

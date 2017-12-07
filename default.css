@@ -25,6 +25,12 @@
   color: #a35151;
 }
 
+.form .subtitle {
+  font-family: "Lobster";
+  font-weight: 500;
+  color: #a35151;
+}
+
 .form input {
   font-family: "Roboto", sans-serif;
   outline: 0;
@@ -54,21 +60,42 @@
   background: #a35151;
 }
 
-.form .message {
+/*.form .message {
   margin: 1rem 0 0;
   color: #b3b3b3;
   font-size: 12px;
+}*/
+
+.form .message{
+  font-family: "Lobster";
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: #a35151;
 }
 
 .form .message a {
   color: #6FA397;
 }
 
-.form .failure{
+.form .submessage{
   font-family: "Roboto", sans-serif;
-  font-size: 1.25rem;
   font-weight: 900;
   color: #a35151;
+}
+
+.form .submessage a {
+  color: #6FA397;
+}
+
+.form .subsubmessage{
+  font-family: "Roboto", sans-serif;
+  font-size: .75rem;
+  font-weight: 900;
+  color: #a35151;
+}
+
+.form .subsubmessage a {
+  color: #6FA397;
 }
 
 body {
