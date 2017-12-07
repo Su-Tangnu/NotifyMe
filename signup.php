@@ -26,23 +26,38 @@
             //$Pass = password_hash($_POST['pass'], PASSWORD_DEFAULT);
             $Pass = $_POST['pass'];
         		$Password = mysqli_real_escape_string($conn,strip_tags($Pass));
-        		$run_sqlCreateAccount = "INSERT INTO users (email, password) VALUES ('$Email', '$Password')";
+            $run_sqlCreateAccount = "INSERT INTO users (email, username, password) VALUES ('$Email', '$Email', '$Password')";
+            if(isset($_POST['username']) && $_POST['username'] != ''){
+              $Username = mysqli_real_escape_string($conn,strip_tags($_POST["username"]));
+              $_SESSION["username"] = $Username;
+              $run_sqlCreateAccount = "INSERT INTO users (email, username, password) VALUES ('$Email', '$Username', '$Password')";
+            }
         		if(mysqli_query($conn,$run_sqlCreateAccount)){
               echo "<script>window.location = \"userHomepage.php/\"; </script>";
         		}
-        		else {
+        		elseif(mysqli_query($conn,"INSERT INTO users (email, password) VALUES ('$Email', '$Password')")){
+              mysqli_query($conn,"DELETE FROM users WHERE email='$Email' AND password='$Password')");
+              ?>
+              <div class="failure">
+                Sign up failed!  That username is already taken.
+                Please select a new username and try again!
+              </div>
+              <?php
+        		}
+            else{
               ?>
               <div class="failure">
                 Sign up failed!  That email address already has an account.
                 Please enter a new email address and try again!
               </div>
               <?php
-        		}
+            }
           }
         ?>
         <form method="post" class="login-form">
           <input type="text" name="email" placeholder="Email"/>
-          <input type="password" name="pass" placeholder="Password"/>
+          <input type="text" name="username" placeholder="Username (optional)"/>
+          <input type="password" name="pass" placeholder="Password (optional)"/>
           <input type="submit" placeholder="SIGN UP"/>
         </form>
         <p class="message">Already a user? <a href="index.php">Log In</a></p>

@@ -26,12 +26,13 @@
             //$Pass = password_hash($_POST['pass'], PASSWORD_DEFAULT);
             $Pass = $_POST['pass'];
         		$Password = mysqli_real_escape_string($conn,strip_tags($Pass));
-        		$run_sqlEmailId = "SELECT * FROM users WHERE email = '$Email'";
+            $_SESSION["pass"] = $Password;
+        		$run_sqlEmailId = "SELECT * FROM users WHERE email = '$Email' OR username = '$Email'";
         		if(mysqli_query($conn,$run_sqlEmailId)){  //Check if for an emailId there is a row
-          		$run_sqlCorrectLogin = "SELECT * FROM users  WHERE email = '$Email' AND password='$Password'";
+          		$run_sqlCorrectLogin = "SELECT * FROM users  WHERE (email = '$Email' AND password='$Password') OR (username = '$Email' AND password='$Password')";
           		$result_sqlCorrectLogin = mysqli_query($conn,$run_sqlCorrectLogin);
               $count = mysqli_num_rows($result_sqlCorrectLogin);
-          		if($count == 1) {
+          		if($count >= 1) {
           			echo "<script>window.location = \"userHomepage.php\"; </script>";
           		}
           		else {
@@ -39,13 +40,30 @@
                 <div class="failure">
                   Login failed!  Please check your credentials and try again!
                 </div>
+                </br>
+                <div class="submessage">
+                  Having trouble remembering your email?
+                  </br>
+                  <a href="accountRecovery.php">Try recovering your account here.</a>
+                </div>
                 <?php
           		}
         		}
+            else{
+              ?>
+              <div class="failure">
+                Login failed!  That email or username is not in our database.
+                Please check your credentials and try again!
+              </div>
+              </br>
+              Having trouble remembering your email?
+              <a href="accountRecovery.php">Try recovering your account here.</a>
+              <?php
+            }
           }
         ?>
         <form method="post" class="login-form">
-          <input type="text" name="email" placeholder="Email"/>
+          <input type="text" name="email" placeholder="Username or Email"/>
           <input type="password" name="pass" placeholder="Password"/>
           <input type="submit" placeholder="LOGIN"/>
         </form>

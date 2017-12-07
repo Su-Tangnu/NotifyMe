@@ -5,8 +5,14 @@
 	//mysqli_connect($server,$username,$password,$db);
 	$conn = mysqli_connect("localhost","root","","notifyme_db");
 	//$conn  mysql_select_db("notifyme_db");
-	if(array_key_exists("email", $_SESSION)){
-		$Email = $_SESSION["email"];
+	if(array_key_exists("email", $_SESSION) && array_key_exists("pass", $_SESSION)){
+		$UserId = $_SESSION["email"];
+		$Password = $_SESSION["pass"];
+		$run_sqlGetUserInfo = "SELECT * FROM users  WHERE (email = '$UserId' AND password='$Password') OR (username = '$UserId' AND password='$Password')";
+		$result_sqlGetUserInfo = mysqli_query($conn,$run_sqlGetUserInfo);
+		$result_UserInfo = mysqli_fetch_assoc($result_sqlGetUserInfo);
+		$Username = $result_UserInfo["username"];
+		$Email = $result_UserInfo["email"];
 	}
 	else{
 		echo "<script>window.location = \"Index.php\"; </script>";
@@ -16,7 +22,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title><?php echo $Email;?>'s Homepage</title>
+		<title><?php echo $Username;?>'s Homepage</title>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 	</head>
@@ -43,7 +49,7 @@
 	<?php }
 			else{?>
 				<div>
-					Hello, <?php echo $Email;?>! (Not <?php echo $Email;?>?
+					Hello, <?php echo $Username;?>! (Not <?php echo $Username;?>?
 					<a href="/NotifyMe/logout.php">
 						Log out.
 					</a>
@@ -52,8 +58,8 @@
 				</br>
 				<div>
 					Need a new password? Click <a href="/NotifyMe/passwordChange.php">
-						here
-					</a>.
+						here.
+					</a>
 				</div>
 				</br>
 				<h6><u>Insert new URL</u></h6>
