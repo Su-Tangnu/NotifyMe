@@ -23,103 +23,108 @@
 <html>
 	<head>
 		<title><?php echo $Username;?>'s Homepage</title>
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+		<link rel="stylesheet" type="text/css" href="userHomepage.css">
 	</head>
 	<body>
-	<div class="container">
-		<div class="jumbotron"> <h2>NOTIFY ME</h2>
-		<?php echo 'Please insert the URL you wish to be notified for'?></div>
-		<?php
-			if(isset($_GET['edit_id'])){?>
+		<div class="userpage">
+			<div class="banner">
+				NotifyMe!
+			</div>
+			<div class="subbanner">
+				We update when they update!
+			</br>
+			</br>
+			</div>
+				<?php
+					if(isset($_GET['edit_id'])){?>
 
-				<h6><u>Edit URL</u></h6>
-				<!--form class="col-md-6" method="post" action=""-->
-				<form class="col-md-6" method="post">
-					<div class="form-group">
-						<label>URL</label>
-						<input type="text" name= "editURL" value="<?php echo $_GET['edit_id']; ?>" class="form-control" required/>
-					</div>
-					<div class="form-group">
-						<input type="hidden" name="edit_URL_hide" value="<?php echo $_GET['edit_id']?>"/>
-						<input type="submit" name="edit_URL" value="Add the changed URL"class="btn btn-primary"/>
-						<input type="submit" name="edit_CANCEL" value="Cancel"class="btn btn-primary"/>
-					</div>
-				</form>
-	<?php }
-			else{?>
-				<div>
-					Hello, <?php echo $Username;?>! (Not <?php echo $Username;?>?
-					<a href="/NotifyMe/logout.php">
-						Log out.
-					</a>
-					)
-				</div>
+						<div class="body">
+							Edit URL
+						</div>
+						<form class="col-md-6" method="post">
+								<input type="text" name= "editURL" value="<?php echo $_GET['edit_id']; ?>" class="form-control" required/>
+								<input type="hidden" name="edit_URL_hide" value="<?php echo $_GET['edit_id']?>"/>
+								<input type="submit" name="edit_URL" value="Change"/>
+								<input type="submit" name="edit_CANCEL" value="Cancel"/>
+						</form>
+			<?php }
+					else{?>
+						<div class="body">
+							Hello, <?php echo $Username;?>!
+						</div>
+						<div class="subbody">
+							(Not <?php echo $Username;?>?
+							<a href="/NotifyMe/logout.php">
+								Log out.
+							</a>
+							)
+							</br>
+							Need a new password? Click <a href="/NotifyMe/passwordChange.php">
+								here.
+							</a>
+						</br>
+						</br>
+						</br>
+						</br>
+						</div>
+						<div class="body">
+							Enter the URL you want to track:
+						</div>
+						<form class="url-form"method="post">
+								<input type="text" name= "newURL" required/>
+								<input type="submit" name="submit_URL" value="Submit" placeholder="Submit"/>
+						</form>
+					<?php
+				}
+				?>
 				</br>
-				<div>
-					Need a new password? Click <a href="/NotifyMe/passwordChange.php">
-						here.
-					</a>
-				</div>
 				</br>
-				<h6><u>Insert new URL</u></h6>
-				<form class="col-md-6" method="post" action="">
-					<div class="form-group">
-						<label>URL</label>
-						<input type="text" name= "newURL" class="form-control" required>
+					<div class="table-title">
+						<h3>List of Websites</h3>
 					</div>
-					<div class="form-group">
-						<input type="submit" name="submit_URL" value="Submit" placeholder="Submit" class="btn btn-primary">
-					</div>
-				</form>
-			<?php
-		}
-			echo "<br> <br> <br>";
-			$sql = "SELECT * FROM user_url_list WHERE email = '$Email'";
-			$execute = mysqli_query($conn,$sql);
-			echo"
-				<table class='table'>
-					<thead>
-						<tr>
-							<th>S.No</th>
-							<th>Existing URL</th>
-							<th>Edit</th>
-							<th>Delete</th>
-						</tr>
-					</thead>
-				<tbody>
-				"
-				;
-				$count=1;
-				if($execute)
-				{
-				while($data = mysqli_fetch_assoc($execute)){
-				/*echo $data['URL'];*/
-				echo "<br>";
-				echo "
-					<tr>
-						<td>$count</td>
-						<td>$data[url]</td>";?>
-						<?php if((substr($data['url'],0,4)!='HTTP')&&(substr($data['url'],0,4)!='http')&&(substr($data['url'],0,4)!='HTTPS')&&(substr($data['url'],0,4)!='https')){?>
-						<?php echo "<td><a href='https://";?><?php echo $data['url'];?><?php echo"'>Visit this page</td>";}?>
+					<?php
+					$sql = "SELECT * FROM user_url_list WHERE email = '$Email'";
+					$execute = mysqli_query($conn,$sql);
+					echo"
+						<table class='table'>
+							<thead>
+								<tr>
+									<th>S.No</th>
+									<th>Existing URL</th>
+									<th>Visit</th>
+									<th>Edit</th>
+									<th>Delete</th>
+								</tr>
+							</thead>
+						<tbody>
+						"
+						;
+						$count=1;
+						if($execute)
+						{
+						while($data = mysqli_fetch_assoc($execute)){
+						/*echo $data['URL'];*/
+						echo "
+							<tr>
+								<td>$count</td>
+								<td>$data[url]</td>";?>
+								<?php if((substr($data['url'],0,4)!='HTTP')&&(substr($data['url'],0,4)!='http')&&(substr($data['url'],0,4)!='HTTPS')&&(substr($data['url'],0,4)!='https')){?>
+								<?php echo "<td><a href='https://";?><?php echo $data['url'];?><?php echo"'>Visit this page</td>";}?>
 
-						<?php if((substr($data['url'],0,4)=='HTTP')||(substr($data['url'],0,4)=='http')||(substr($data['url'],0,4)=='HTTPS')||(substr($data['url'],0,4)=='https')){?>
-						<?php echo "<td><a href='";?><?php echo $data['url'];?><?php echo"'>Visit this page</td>";}?>
-						<?php echo"
-						<td><a href='/NotifyMe/userHomepage.php?edit_id=$data[url]' class='btn btn-success'>Edit</button></td>
-						<td><a href='/NotifyMe/userHomepage.php?del_id=$data[url]' class='btn btn-danger'>Delete</button></td>
-					</tr>
-			";
-			$count++;
-			}
-		}
-
-			echo "</tbody> </table>";
-	?>
-
-	</div>
-
-
+								<?php if((substr($data['url'],0,4)=='HTTP')||(substr($data['url'],0,4)=='http')||(substr($data['url'],0,4)=='HTTPS')||(substr($data['url'],0,4)=='https')){?>
+								<?php echo "<td><a href='";?><?php echo $data['url'];?><?php echo"'>Visit this page</td>";}?>
+								<?php echo"
+								<td><a href='/NotifyMe/userHomepage.php?edit_id=$data[url]' class='btn btn-success'>Edit</button></td>
+								<td><a href='/NotifyMe/userHomepage.php?del_id=$data[url]' class='btn btn-danger'>Delete</button></td>
+							</tr>
+					";
+					$count++;
+					}
+				}
+					echo "</tbody> </table>";
+			?>
+			</div>
+		</div>
 	</body>
 </html>
 <?php

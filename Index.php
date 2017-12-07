@@ -58,7 +58,7 @@
             }
           }
         ?>
-        <form method="post" class="login-form">
+        <form method="post">
           <input type="text" name="email" placeholder="Username or Email"/>
           <input type="password" name="pass" placeholder="Password"/>
           <input type="submit" value="LOGIN" placeholder="LOGIN"/>
