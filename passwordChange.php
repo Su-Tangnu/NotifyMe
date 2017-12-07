@@ -33,7 +33,7 @@
                 $run_sqlChangePass = "UPDATE users SET password = '$NewPass' where email = '$_SESSION[email]'";
             		if($result_sqlChangePass = mysqli_query($conn,$run_sqlChangePass)){
                   ?>
-                  <div class="failure">
+                  <div class="message">
                     Password change successful!
                     </br>
                     Click <a href="/NotifyMe/userHomepage.php">
@@ -45,7 +45,7 @@
                 }
                 else{
                   ?>
-                  <div class="failure">
+                  <div class="message">
                     New password is bad!  Please try again or click
                     <a href="/NotifyMe/userHomepage.php">
             						here
@@ -57,8 +57,11 @@
           		}
           		else {
                 ?>
-                <div class="failure">
-                  Old password was incorrect!  Please try again or click
+                <div class="message">
+                  Old password was incorrect!
+                </div>
+                <div class="submessage">
+                  Please try again or click
                   <a href="/NotifyMe/userHomepage.php">
           						here
           				</a>
@@ -69,8 +72,11 @@
         		}
             else{
               ?>
-              <div class="failure">
-                New passwords don't match!  Please try again or click
+              <div class="message">
+                New passwords don't match!
+              </div>
+              <div class="submessage">
+                Please try again or click
                 <a href="/NotifyMe/userHomepage.php">
                     here
                 </a>
@@ -83,8 +89,8 @@
         <form method="post" class="login-form">
           <input type="text" name="oldPass" placeholder="Old Password"/>
           <input type="text" name="newPass" placeholder="New Password"/>
-          <input type="text" name="newPassVerify" placeholder="Reenter New Password"/>
-          <input type="submit" placeholder="CHANGE"/>
+          <input type="text" name="newPassVerify" placeholder="Re-enter New Password"/>
+          <input type="submit" value="CHANGE" placeholder="CHANGE"/>
         </form>
       </div>
     </div>
