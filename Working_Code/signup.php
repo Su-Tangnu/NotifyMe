@@ -41,7 +41,7 @@
         ?>
         <form method="post" class="login-form">
           <input type="text" name="email" placeholder="Email"/>
-          <input type="password" name="pass" placeholder="Password"/>
+          <input type="text" name="pass" placeholder="Password"/>
           <input type="submit" placeholder="SIGN UP"/>
         </form>
         <p class="message">Already a user? <a href="index.php">Log In</a></p>

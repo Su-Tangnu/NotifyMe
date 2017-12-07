@@ -21,7 +21,8 @@
         }
         elseif (array_key_exists("Last-Modified", $headers)){
           $lastModified = "Last-Modified";
-          $sql_update = "UPDATE urls SET last-modified = '$headers[$lastModified]', updated = '1' WHERE url = $data[url]";
+          //$sql_update = "UPDATE urls SET last-modified = '$headers[$lastModified]', updated = '1' WHERE url = $data[url]";
+          $sql_update = "UPDATE urls SET updated = '1' WHERE url = $data[url]";
           $execute_update = mysqli_query($conn,$sql_update);
           if($execute_update){
             echo "Updated $data[url] based on Last-Modified.";
@@ -61,6 +62,7 @@
       $msg = wordwrap($msg,70);
       // send email
       $sent = mail($emails_url['email'],"Websites Have Updated!",$msg);
+      echo "Email Sent to ". $emails_url['email'] . " about " . $emails_url['url'];
     }
   }
 ?>

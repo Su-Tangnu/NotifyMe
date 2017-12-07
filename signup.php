@@ -20,14 +20,11 @@
         	//mysqli_connect($server,$username,$password,$db);
         	$conn = mysqli_connect("localhost","root","","notifyme_db");
         	//$conn  mysql_select_db("notifyme_db");
-        	if( isset($_POST['email'])){
+        	if( isset($_POST['email']) && isset($_POST['pass']) ){
         		$Email = mysqli_real_escape_string($conn,strip_tags($_POST['email']));
             $_SESSION["email"] = $Email;
             //$Pass = password_hash($_POST['pass'], PASSWORD_DEFAULT);
-            $Pass = '';
-            if(isset($_POST['pass'])){
-              $Pass = $_POST['pass'];
-            }
+            $Pass = $_POST['pass'];
         		$Password = mysqli_real_escape_string($conn,strip_tags($Pass));
             $run_sqlCreateAccount = "INSERT INTO users (email, username, password) VALUES ('$Email', '$Email', '$Password')";
             if(isset($_POST['username']) && $_POST['username'] != ''){
@@ -36,7 +33,7 @@
               $run_sqlCreateAccount = "INSERT INTO users (email, username, password) VALUES ('$Email', '$Username', '$Password')";
             }
         		if(mysqli_query($conn,$run_sqlCreateAccount)){
-              echo "<script>window.location = \"/NotifyMe/userHomepage.php\"; </script>";
+              echo "<script>window.location = \"userHomepage.php/\"; </script>";
         		}
         		elseif(mysqli_query($conn,"INSERT INTO users (email, password) VALUES ('$Email', '$Password')")){
               mysqli_query($conn,"DELETE FROM users WHERE email='$Email' AND password='$Password')");
@@ -64,11 +61,11 @@
         <form method="post" class="login-form">
           <input type="text" name="email" placeholder="Email"/>
           <input type="text" name="username" placeholder="Username (optional)"/>
-          <input type="password" name="pass" placeholder="Password (optional)"/>
+          <input type="text" name="pass" placeholder="Password (optional)"/>
           <input type="submit" value="SIGN UP" placeholder="SIGN UP"/>
         </form>
         <div class="submessage">
-          <!--Already a user? <a href="/NotifyMe/index.php">Log In</a>-->
+          Already a user? <a href="index.php">Log In</a>
         </div>
       </div>
     </div>
