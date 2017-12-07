@@ -45,14 +45,14 @@
 			else{?>
 				<div>
 					Hello, <?php echo $Email;?>! (Not <?php echo $Email;?>?
-					<a href="/NotifyMe/logout.php">
+					<a href="/NotifyMe/Working_Code/logout.php">
 						Log out.
 					</a>
 					)
 				</div>
 				</br>
 				<div>
-					Need a new password? Click <a href="/NotifyMe/passwordChange.php">
+					Need a new password? Click <a href="/NotifyMe/Working_Code/passwordChange.php">
 						here
 					</a>.
 				</div>
@@ -101,8 +101,8 @@
 						<?php if((substr($data['url'],0,4)=='HTTP')||(substr($data['url'],0,4)=='http')||(substr($data['url'],0,4)=='HTTPS')||(substr($data['url'],0,4)=='https')){?>
 						<?php echo "<td><a href='";?><?php echo $data['url'];?><?php echo"'>Visit this page</td>";}?>
 						<?php echo"
-						<td><a href='/NotifyMe/userHomepage.php?edit_id=$data[url]' class='btn btn-success'>Edit</button></td>
-						<td><a href='/NotifyMe/userHomepage.php?del_id=$data[url]' class='btn btn-danger'>Delete</button></td>
+						<td><a href='/NotifyMe/Working_Code/userHomepage.php?edit_id=$data[url]' class='btn btn-success'>Edit</button></td>
+						<td><a href='/NotifyMe/Working_Code/userHomepage.php?del_id=$data[url]' class='btn btn-danger'>Delete</button></td>
 					</tr>
 			";
 			$count++;
@@ -127,7 +127,7 @@
 			$run_sql_insert_url = mysqli_query($conn , $run_sql_urls);
 			//$run = mysqli_query($conn , $run_sql);
 			if(mysqli_query($conn , $run_sql_user_url_list)){
-				echo "<script>window.location = \"/NotifyMe/userHomepage.php\"; </script>";
+				echo "<script>window.location = \"/NotifyMe/Working_Code/userHomepage.php\"; </script>";
 			}
 	}/*
 	else{
@@ -135,7 +135,7 @@
 	}*/
 
 	if(isset($_POST['edit_CANCEL'])){
-				echo "<script>window.location = \"/NotifyMe/userHomepage.php\"; </script>";
+				echo "<script>window.location = \"/NotifyMe/Working_Code/userHomepage.php\"; </script>";
 
 	}
 		if(isset($_POST['edit_URL'])){
@@ -147,7 +147,7 @@
 	$run_sql_insert_user_url_list = mysqli_query($conn , $edit_sql_user_url_list);
 
 	if($run_sql_insert_url){
-				echo "<script>window.location = \"/NotifyMe/userHomepage.php\"; </script>";
+				echo "<script>window.location = \"/NotifyMe/Working_Code/userHomepage.php\"; </script>";
 			}
 	}
 
@@ -155,7 +155,7 @@
 		$del_sql = "DELETE FROM urls WHERE url = '$_GET[del_id]'";
 		$del_sql_user_url_list = "DELETE FROM user_url_list where url= '$_GET[del_id]'";
 	if(mysqli_query($conn , $del_sql) && mysqli_query($conn , $del_sql_user_url_list)){
-				echo "<script>window.location = \"/NotifyMe/userHomepage.php\"; </script>";
+				echo "<script>window.location = \"/NotifyMe/Working_Code/userHomepage.php\"; </script>";
 			}
 	}
 	?>

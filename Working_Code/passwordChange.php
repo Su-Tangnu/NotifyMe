@@ -32,7 +32,7 @@
                   <div class="failure">
                     Password change successful!
                     </br>
-                    Click <a href="/NotifyMe/userHomepage.php">
+                    Click <a href="/NotifyMe/Working_Code/userHomepage.php">
           						here
           					</a>
                     to go back!
@@ -44,7 +44,7 @@
                 ?>
                 <div class="failure">
                   Old password was incorrect!  Please try again or click
-                  <a href="/NotifyMe/userHomepage.php">
+                  <a href="/NotifyMe/Working_Code/userHomepage.php">
           						here
           				</a>
                   to go back!
@@ -56,7 +56,7 @@
               ?>
               <div class="failure">
                 New passwords don't match!  Please try again or click
-                <a href="/NotifyMe/userHomepage.php">
+                <a href="/NotifyMe/Working_Code/userHomepage.php">
                     here
                 </a>
                 to go back!
