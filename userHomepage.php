@@ -15,7 +15,7 @@
 		$Email = $result_UserInfo["email"];
 	}
 	else{
-		echo "<script>window.location = \"Index.php\"; </script>";
+		echo "<script>window.location = \"/NotifyMe/Index.php\"; </script>";
 	}
 
 ?>

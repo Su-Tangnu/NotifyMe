@@ -27,13 +27,14 @@
             $Pass = $_POST['pass'];
         		$Password = mysqli_real_escape_string($conn,strip_tags($Pass));
             $run_sqlCreateAccount = "INSERT INTO users (email, username, password) VALUES ('$Email', '$Email', '$Password')";
+            $_SESSION["pass"] = $Password;
             if(isset($_POST['username']) && $_POST['username'] != ''){
               $Username = mysqli_real_escape_string($conn,strip_tags($_POST["username"]));
               $_SESSION["username"] = $Username;
               $run_sqlCreateAccount = "INSERT INTO users (email, username, password) VALUES ('$Email', '$Username', '$Password')";
             }
         		if(mysqli_query($conn,$run_sqlCreateAccount)){
-              echo "<script>window.location = \"userHomepage.php/\"; </script>";
+              echo "<script>window.location = \"userHomepage.php\"; </script>";
         		}
         		elseif(mysqli_query($conn,"INSERT INTO users (email, password) VALUES ('$Email', '$Password')")){
               mysqli_query($conn,"DELETE FROM users WHERE email='$Email' AND password='$Password')");
