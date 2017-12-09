@@ -1,4 +1,6 @@
 <?php
+  //We use sessions to ensure that people can only see the homepage
+  //once they have logged in.
   session_start();
 ?>
 <!DOCTYPE html>
@@ -37,7 +39,7 @@
               echo "<script>window.location = \"userHomepage.php\"; </script>";
         		}
         		elseif(mysqli_query($conn,"INSERT INTO users (email, password) VALUES ('$Email', '$Password')")){
-              mysqli_query($conn,"DELETE FROM users WHERE email='$Email' AND password='$Password')");
+              mysqli_query($conn,"DELETE FROM users WHERE (email='$Email' AND password='$Password')");
               ?>
               <div class="message">
                 Sign up failed!  That username is already taken.
