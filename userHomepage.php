@@ -1,4 +1,6 @@
 <?php
+	//We use sessions to ensure that people can only see the homepage
+	//once they have logged in.
 	session_start();
 	//$server = "localhost";
 	//$db = "notifyme_db";
@@ -36,8 +38,8 @@
 			</br>
 			</div>
 				<?php
-					if(isset($_GET['edit_id'])){?>
-
+					if(isset($_GET['edit_id'])){
+				?>
 						<div class="body">
 							Edit URL
 						</div>
@@ -47,8 +49,10 @@
 								<input type="submit" name="edit_URL" value="Change"/>
 								<input type="submit" name="edit_CANCEL" value="Cancel"/>
 						</form>
-			<?php }
-					else{?>
+				<?php
+					}
+					else{
+				?>
 						<div class="body">
 							Hello, <?php echo $Username;?>!
 						</div>
@@ -74,15 +78,15 @@
 								<input type="text" name= "newURL" required/>
 								<input type="submit" name="submit_URL" value="Submit" placeholder="Submit"/>
 						</form>
-					<?php
-				}
+				<?php
+					}
 				?>
 				</br>
 				</br>
-					<div class="table-title">
-						<h3>List of Websites</h3>
-					</div>
-					<?php
+				<div class="table-title">
+					<h3>List of Websites</h3>
+				</div>
+				<?php
 					$sql = "SELECT * FROM user_url_list WHERE email = '$Email'";
 					$execute = mysqli_query($conn,$sql);
 					echo"
@@ -97,32 +101,35 @@
 								</tr>
 							</thead>
 						<tbody>
-						"
-						;
+						";
 						$count=1;
-						if($execute)
-						{
-						while($data = mysqli_fetch_assoc($execute)){
-						/*echo $data['URL'];*/
-						echo "
-							<tr>
-								<td>$count</td>
-								<td>$data[url]</td>";?>
-								<?php if((substr($data['url'],0,4)!='HTTP')&&(substr($data['url'],0,4)!='http')&&(substr($data['url'],0,4)!='HTTPS')&&(substr($data['url'],0,4)!='https')){?>
-								<?php echo "<td><a href='https://";?><?php echo $data['url'];?><?php echo"'>Visit this page</td>";}?>
-
-								<?php if((substr($data['url'],0,4)=='HTTP')||(substr($data['url'],0,4)=='http')||(substr($data['url'],0,4)=='HTTPS')||(substr($data['url'],0,4)=='https')){?>
-								<?php echo "<td><a href='";?><?php echo $data['url'];?><?php echo"'>Visit this page</td>";}?>
-								<?php echo"
-								<td><a href='/NotifyMe/userHomepage.php?edit_id=$data[url]' class='btn btn-success'>Edit</button></td>
-								<td><a href='/NotifyMe/userHomepage.php?del_id=$data[url]' class='btn btn-danger'>Delete</button></td>
-							</tr>
-					";
-					$count++;
-					}
-				}
-					echo "</tbody> </table>";
-			?>
+						if($execute){
+							while($data = mysqli_fetch_assoc($execute)){
+								/*echo $data['URL'];*/
+								echo "
+								<tr>
+									<td>$count</td>
+									<td>$data[url]</td>";
+								if((substr($data['url'],0,4)!='HTTP')&&(substr($data['url'],0,4)!='http')&&(substr($data['url'],0,4)!='HTTPS')&&(substr($data['url'],0,4)!='https')){
+									echo "<td><a href='http://";
+									echo $data['url'];
+									echo"'>Visit this page</td>";
+								}
+								else{
+									echo "<td><a href='";
+									echo $data['url'];
+									echo"'>Visit this page</td>";
+								}
+								echo"
+									<td><a href='/NotifyMe/userHomepage.php?edit_id=$data[url]' class='btn btn-success'>Edit</button></td>
+									<td><a href='/NotifyMe/userHomepage.php?del_id=$data[url]' class='btn btn-danger'>Delete</button></td>
+								</tr>
+								";
+								$count++;
+							}
+						}
+						echo "</tbody> </table>";
+				?>
 			</div>
 		</div>
 	</body>
@@ -146,26 +153,22 @@
 
 	if(isset($_POST['edit_CANCEL'])){
 				echo "<script>window.location = \"/NotifyMe/userHomepage.php\"; </script>";
-
 	}
-		if(isset($_POST['edit_URL'])){
-	$editdURL = mysqli_real_escape_string($conn,strip_tags($_POST['editURL']));
-	$edit_sql_urls = "UPDATE urls SET url = '$editdURL' where url='$_GET[edit_id]' ";
-	$run_sql_insert_url = mysqli_query($conn , $edit_sql_urls);
-
-	$edit_sql_user_url_list = "UPDATE user_url_list url = '$editdURL' where email='$Email' and url='$_GET[edit_id]'";
-	$run_sql_insert_user_url_list = mysqli_query($conn , $edit_sql_user_url_list);
-
-	if($run_sql_insert_url){
+	if(isset($_POST['edit_URL'])){
+		$editdURL = mysqli_real_escape_string($conn,strip_tags($_POST['editURL']));
+		$edit_sql_urls = "UPDATE urls SET url = '$editdURL' WHERE url='$_GET[edit_id]' ";
+		$run_sql_insert_url = mysqli_query($conn , $edit_sql_urls);
+		$edit_sql_user_url_list = "UPDATE user_url_list SET url = '$editdURL' WHERE email='$Email' AND url='$_GET[edit_id]'";
+		$run_sql_insert_user_url_list = mysqli_query($conn , $edit_sql_user_url_list);
+		if($run_sql_insert_url){
 				echo "<script>window.location = \"/NotifyMe/userHomepage.php\"; </script>";
-			}
+		}
 	}
-
-		if(isset($_GET['del_id'])){
+	if(isset($_GET['del_id'])){
 		$del_sql = "DELETE FROM urls WHERE url = '$_GET[del_id]'";
-		$del_sql_user_url_list = "DELETE FROM user_url_list where url= '$_GET[del_id]'";
-	if(mysqli_query($conn , $del_sql) && mysqli_query($conn , $del_sql_user_url_list)){
+		$del_sql_user_url_list = "DELETE FROM user_url_list WHERE url= '$_GET[del_id]'";
+		if(mysqli_query($conn , $del_sql) && mysqli_query($conn , $del_sql_user_url_list)){
 				echo "<script>window.location = \"/NotifyMe/userHomepage.php\"; </script>";
-			}
+		}
 	}
-	?>
+?>
