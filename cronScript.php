@@ -4,7 +4,11 @@
   $execute_urls_info = mysqli_query($conn,$sql_urls_info);
   if($execute_urls_info){
     while($data = mysqli_fetch_assoc($execute_urls_info)){
-      if($headers = get_headers($data['url'], 1)){
+      $properURL = $data['url'];
+      if((substr($properURL,0,4)!='HTTP')&&(substr($properURL,0,4)!='http')&&(substr($properURL,0,4)!='HTTPS')&&(substr($properURL,0,4)!='https')){
+        $properURL = "http://" . $properURL;
+      }
+      if($headers = get_headers($properURL, 1)){
         if(array_key_exists("Last-Modified", $headers) && ($headers["Last-Modified"] == $data["lastModified"])){
           $lastModified = "Last-Modified";
           $sql_update = "UPDATE urls SET updated = '0' WHERE url = '$data[url]'";
@@ -40,6 +44,10 @@
             echo "</br>";
           }
         }
+      }
+      else{
+        echo "Not a proper URL.";
+        echo "</br>";
       }
     }
   }
