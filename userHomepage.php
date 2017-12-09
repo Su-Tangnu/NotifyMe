@@ -138,18 +138,46 @@
 
 	if( isset($_POST['submit_URL']) ){
 			$newURLVal = mysqli_real_escape_string($conn,strip_tags($_POST['newURL']));
-			$run_sql_urls = "INSERT INTO urls (url) VALUES ('$newURLVal')";
-			$run_sql_user_url_list = "INSERT INTO user_url_list (email, url) VALUES ('$Email','$newURLVal')";
-
-			$run_sql_insert_url = mysqli_query($conn , $run_sql_urls);
-			//$run = mysqli_query($conn , $run_sql);
-			if(mysqli_query($conn , $run_sql_user_url_list)){
+			$sql_urls = "INSERT INTO urls (url) VALUES ('$newURLVal')";
+			$sql_user_url_list = "INSERT INTO user_url_list (email, url) VALUES ('$Email','$newURLVal')";
+			$run_sql_insert_url = mysqli_query($conn , $sql_urls);
+			$run_sql_insert_user_url_list = mysqli_query($conn , $sql_user_url_list);
+			$properURL = $newURLVal;
+      if((substr($properURL,0,4)!='HTTP')&&(substr($properURL,0,4)!='http')&&(substr($properURL,0,4)!='HTTPS')&&(substr($properURL,0,4)!='https')){
+        $properURL = "http://" . $properURL;
+      }
+			$headers = get_headers($properURL, 1);
+      if($headers){
+				if (array_key_exists("Last-Modified", $headers)){
+          $lastModified = "Last-Modified";
+          $sql_update = "UPDATE urls SET lastModified = '$headers[$lastModified]' WHERE url = '$newURLVal'";
+          $execute_update = mysqli_query($conn,$sql_update);
+          if($execute_update){
+            echo "Updated $newURLVal Last-Modified.";
+            echo "</br>";
+          }
+        }
+        if(array_key_exists("ETag", $headers)){
+          $sql_update = "UPDATE urls SET etag = '$headers[ETag]' WHERE url = '$newURLVal'";
+          $execute_update = mysqli_query($conn,$sql_update);
+          if($execute_update){
+            echo "Updated $newURLVal ETag.";
+            echo "</br>";
+          }
+        }
+				elseif(!array_key_exists("Last-Modified", $headers)){
+					$run_delete_url = mysqli_query($conn,"DELETE FROM urls WHERE url = '$newURLVal'");
+				}
+			}
+			if($run_sql_insert_user_url_list && !$run_delete_url){
 				echo "<script>window.location = \"/NotifyMe/userHomepage.php\"; </script>";
 			}
-	}/*
-	else{
-	echo "You can add a new URL !!";
-	}*/
+			else{
+				?>
+				<script>alert("URL was not added!\n\nSorry, this URL does not have a Last-Modified value or an Etag value.")</script>
+				<?php
+			}
+	}
 
 	if(isset($_POST['edit_CANCEL'])){
 				echo "<script>window.location = \"/NotifyMe/userHomepage.php\"; </script>";
