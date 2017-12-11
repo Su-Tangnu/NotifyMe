@@ -28,18 +28,23 @@
             //strip_tags and mysqli_real_escape_string to help prevent sql injection.
             $Email = mysqli_real_escape_string($conn,strip_tags($_POST['email']));
             //Session variable used to store email and verify that the user has logged in:
-            $_SESSION["email"] = $Email;
+            $_SESSION['email'] = $Email;
 
             //$Pass = password_hash($_POST['pass'], PASSWORD_DEFAULT);
             $Pass = $_POST['pass'];
         		$Password = mysqli_real_escape_string($conn,strip_tags($Pass));
             //Session variable used to store password and verify that the user has logged in:
-            $_SESSION["pass"] = $Password;
+            $_SESSION['pass'] = $Password;
 
             //Get all users that match the email or username entered in the "email" variable.
-        		$run_sqlEmailId = "SELECT * FROM users WHERE email = '$Email' OR username = '$Email'";
+        		$sqlEmailId = "SELECT * FROM users WHERE email = '$Email' OR username = '$Email'";
             //Run the query and check that their is an email or username with the email value.
-            if(mysqli_query($conn,$run_sqlEmailId)){
+            $result_sqlEmailId = mysqli_query($conn,$sqlEmailId);
+            if($result_sqlEmailId){
+              //Get the user info for the session's email data.
+              $UserInfo = mysqli_fetch_assoc($result_sqlEmailId);
+              $_SESSION['email'] = $UserInfo['email'];
+
               //Get all users that match the email or username entered in the "email" variable
               //and match the password entered.
               $run_sqlCorrectLogin = "SELECT * FROM users  WHERE (email = '$Email' AND password='$Password') OR (username = '$Email' AND password='$Password')";
