@@ -102,17 +102,8 @@ table {
   text-align: center;
 }
 
-.table-fill {
-  background: #fbfbfb;
-  border-radius:3px;
-  border-collapse: collapse;
-  height: 320px;
-  margin: auto;
-  max-width: 600px;
-  padding:5px;
-  width: 100%;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-  animation: float 5s infinite;
+.subbody a {
+  color: #6FA397;
 }
 
 th {
@@ -123,7 +114,6 @@ th {
   font-size:1.5rem;
   font-weight: 500;
   padding:24px;
-  text-align:left;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
   vertical-align:middle;
   text-align: center;
@@ -140,7 +130,7 @@ th:last-child {
 
 tr {
   border-top: 1px solid #C1C3D1;
-  border-bottom-: 1px solid #C1C3D1;
+  border-bottom: 1px solid #C1C3D1;
   color: #a35151;
   font-size:16px;
   font-weight:normal;
@@ -202,28 +192,4 @@ td:hover a {
 
 td:last-child {
   border-right: 0px;
-}
-
-th.text-left {
-  text-align: left;
-}
-
-th.text-center {
-  text-align: center;
-}
-
-th.text-right {
-  text-align: right;
-}
-
-td.text-left {
-  text-align: left;
-}
-
-td.text-center {
-  text-align: center;
-}
-
-td.text-right {
-  text-align: right;
 }

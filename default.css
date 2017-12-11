@@ -140,12 +140,6 @@ body {
   background: #a35151;
 }
 
-/*.form .message {
-  margin: 1rem 0 0;
-  color: #b3b3b3;
-  font-size: 12px;
-}*/
-
 .form .message{
   font-family: "Lobster";
   font-size: 1.25rem;
