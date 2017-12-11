@@ -22,7 +22,7 @@
         <?php
           //If the old password is provided, alongside the new password
           //and its verification.
-        	if( isset($_POST['oldPass']) && isset($_POST['newPass']) && isset($_POST['newPassVerify'])){
+        	if(isset($_POST['oldPass']) && isset($_POST['newPass']) && isset($_POST['newPassVerify'])){
             //Check that the new password and the verification are the same.
             if($_POST['newPass'] == $_POST['newPassVerify']){
               //$OldPass = password_hash($_POST['oldPass'], PASSWORD_DEFAULT);
