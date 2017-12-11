@@ -93,13 +93,13 @@
           }
         ?>
         <form method="post" class="login-form">
-          <input type="text" name="email" placeholder="Email"/>
-          <input type="text" name="username" placeholder="Username (optional)"/>
-          <input type="text" name="pass" placeholder="Password (optional)"/>
-          <input type="submit" value="SIGN UP" placeholder="SIGN UP"/>
+          <input id="emailInput" type="text" name="email" placeholder="Email"/>
+          <input id="usernameInput" type="text" name="username" placeholder="Username (optional)"/>
+          <input id="passInput"type="text" name="pass" placeholder="Password (optional)"/>
+          <input id="signupInput" type="submit" value="SIGN UP" placeholder="SIGN UP"/>
         </form>
         <div class="submessage">
-          Already a user? <a href="index.php">Log In</a>
+          Already a user? <a id="linkToIndex" href="index.php">Log In</a>
         </div>
       </div>
     </div>

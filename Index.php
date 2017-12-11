@@ -104,9 +104,9 @@
           }
         ?>
         <form method="post">
-          <input type="text" name="email" placeholder="Username or Email"/>
-          <input type="password" name="pass" placeholder="Password"/>
-          <input type="submit" value="LOGIN" placeholder="LOGIN"/>
+          <input id="emailInput" type="text" name="email" placeholder="Username or Email"/>
+          <input id="passInput" type="password" name="pass" placeholder="Password"/>
+          <input id="loginInput" type="submit" value="LOGIN" placeholder="LOGIN"/>
         </form>
         <div class="submessage">
         <?php
@@ -116,13 +116,13 @@
             ?>
             Having trouble remembering your password?
             </br>
-            <a href="accountRecovery.php">Try recovering your account here.</a>
+            <a id="accountRecovery" href="accountRecovery.php">Try recovering your account here.</a>
             </br>
             </br>
         <?php
           }
           ?>
-          Not registered? <a href="signup.php">Create an account</a>
+          Not registered? <a id="signup" href="signup.php">Create an account</a>
         </div>
       </div>
     </div>

@@ -50,7 +50,7 @@
                   We were unable to change your password from what it was before.
                   </br>
                   Please click
-                  <a href="/NotifyMe/Index.php">
+                  <a id="linkToIndex" href="/NotifyMe/Index.php">
                     here
                   </a>
                   to try logging in again or reenter your email or username to try
@@ -69,7 +69,7 @@
                 <div class="submessage">
                   </br>
                   Click
-                  <a href="/NotifyMe/Index.php">
+                  <a id="linkToIndex" href="/NotifyMe/Index.php">
                     here
                   </a>
                   to log in.
@@ -89,7 +89,7 @@
                 Your password is what it was previously.
                 </br>
                 Click
-                <a href="/NotifyMe/Index.php">
+                <a id="linkToIndex" href="/NotifyMe/Index.php">
                   here
                 </a>
                 to try logging in again, or
@@ -134,7 +134,7 @@
                       We were unable to change your password from what it was before.
                       </br>
                       Please click
-                      <a href="/NotifyMe/Index.php">
+                      <a id="linkToIndex" href="/NotifyMe/Index.php">
                         here
                       </a>
                       to try logging in again or reenter your email or username to try
@@ -152,7 +152,7 @@
                     <div class="submessage">
                       </br>
                       Click
-                      <a href="/NotifyMe/Index.php">
+                      <a id="linkToIndex" href="/NotifyMe/Index.php">
                         here
                       </a>
                       to log in.
@@ -172,7 +172,7 @@
                     Your password is what it was previously.
                     </br>
                     Click
-                    <a href="/NotifyMe/Index.php">
+                    <a id="linkToIndex" href="/NotifyMe/Index.php">
                       here
                     </a>
                     to try logging in again, or
@@ -197,7 +197,7 @@
                 Your password is what it was previously.
                 </br>
                 Click
-                <a href="/NotifyMe/Index.php">
+                <a id="linkToIndex" href="/NotifyMe/Index.php">
                   here
                 </a>
                 to try logging in again, or
@@ -218,7 +218,7 @@
             <div class="submessage">
               </br>
               Please click
-              <a href="/NotifyMe/Index.php">
+              <a id="linkToIndex" href="/NotifyMe/Index.php">
                 here
               </a>
               to try logging in again or enter your email or username to try
@@ -237,9 +237,9 @@
           }
         ?>
         <form method="post" class="login-form">
-          <input type="text" name="email" placeholder="Email"/>
-          <input type="text" name="username" placeholder="Username"/>
-          <input type="submit" value="SEND EMAIL" placeholder="SEND EMAIL"/>
+          <input id="emailInput" type="text" name="email" placeholder="Email"/>
+          <input id="usernameInput" type="text" name="username" placeholder="Username"/>
+          <input id="accountRecoveryInput" type="submit" value="SEND EMAIL" placeholder="SEND EMAIL"/>
         </form>
       </div>
     </div>

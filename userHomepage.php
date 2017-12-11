@@ -54,9 +54,9 @@
 							Edit URL
 						</div>
 						<form method="post">
-								<input type="text" name= "editURL" value="<?php echo $_GET['edit_id']; ?>" required/>
-								<input type="submit" name="edit_URL" value="Change"/>
-								<input type="submit" name="edit_CANCEL" value="Cancel"/>
+								<input id="editURLInput" type="text" name= "editURL" value="<?php echo $_GET['edit_id']; ?>" required/>
+								<input id="editURLSubmitInput" type="submit" name="edit_URL" value="Change"/>
+								<input id="editCancelInput" type="submit" name="edit_CANCEL" value="Cancel"/>
 						</form>
 				<?php
 					}
@@ -69,12 +69,12 @@
 						</div>
 						<div class="subbody">
 							(Not <?php echo $Username;?>?
-							<a href="/NotifyMe/logout.php">
+							<a id="linkToLogout" href="/NotifyMe/logout.php">
 								Log out.
 							</a>
 							)
 							</br>
-							Need a new password? Click <a href="/NotifyMe/passwordChange.php">
+							Need a new password? Click <a id="linkToPassChange" href="/NotifyMe/passwordChange.php">
 								here.
 							</a>
 						</br>
@@ -86,8 +86,8 @@
 							Enter the URL you want to track:
 						</div>
 						<form class="url-form"method="post">
-								<input type="text" name= "newURL" required/>
-								<input type="submit" name="submit_URL" value="Submit" placeholder="Submit"/>
+								<input id="newURLInput" type="text" name= "newURL" required/>
+								<input id="addURLInput" type="submit" name="submit_URL" value="Submit" placeholder="Submit"/>
 						</form>
 				<?php
 					}
@@ -120,25 +120,26 @@
 						if($execute){
 							//Loop through the data per row with an associative array.
 							while($data = mysqli_fetch_assoc($execute)){
+								$linkID = "linkToURL" . $count;
 								echo "
 								<tr>
 									<td>$count</td>
 									<td>$data[url]</td>";
 								//Add http:// to the url if it's not there so that the link works.
 								if((substr($data['url'],0,4)!='HTTP')&&(substr($data['url'],0,4)!='http')&&(substr($data['url'],0,4)!='HTTPS')&&(substr($data['url'],0,4)!='https')){
-									echo "<td><a href='http://";
+									echo "<td><a id=$linkID href='http://";
 									echo $data['url'];
 									echo"'>Visit this page</td>";
 								}
 								//Otherwise, it already had http, so you don't need to add it.
 								else{
-									echo "<td><a href='";
+									echo "<td><a id=$linkID href='";
 									echo $data['url'];
 									echo"'>Visit this page</td>";
 								}
 								echo"
-									<td><a href='/NotifyMe/userHomepage.php?edit_id=$data[url]'>Edit</td>
-									<td><a href='/NotifyMe/userHomepage.php?del_id=$data[url]'>Delete</td>
+									<td><a id='linkToHomepageEdit' href='/NotifyMe/userHomepage.php?edit_id=$data[url]'>Edit</td>
+									<td><a id='linkToHomepageDelete' href='/NotifyMe/userHomepage.php?del_id=$data[url]'>Delete</td>
 								</tr>
 								";
 								$count++;

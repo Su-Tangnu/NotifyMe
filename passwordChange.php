@@ -51,7 +51,7 @@
                   <div class="message">
                     Password change successful!
                     </br>
-                    Click <a href="/NotifyMe/userHomepage.php">
+                    Click <a id="linkToHomepage" href="/NotifyMe/userHomepage.php">
           						here
           					</a>
                     to go back!
@@ -63,7 +63,7 @@
                   ?>
                   <div class="message">
                     New password is bad!  Please try again or click
-                    <a href="/NotifyMe/userHomepage.php">
+                    <a id="linkToHomepage" href="/NotifyMe/userHomepage.php">
             						here
             				</a>
                     to go back!
@@ -80,7 +80,7 @@
                 </div>
                 <div class="submessage">
                   Please try again or click
-                  <a href="/NotifyMe/userHomepage.php">
+                  <a id="linkToHomepage" href="/NotifyMe/userHomepage.php">
           						here
           				</a>
                   to go back!
@@ -96,7 +96,7 @@
               </div>
               <div class="submessage">
                 Please try again or click
-                <a href="/NotifyMe/userHomepage.php">
+                <a id="linkToHomepage" href="/NotifyMe/userHomepage.php">
                     here
                 </a>
                 to go back!
@@ -106,10 +106,10 @@
           }
         ?>
         <form method="post" class="login-form">
-          <input type="text" name="oldPass" placeholder="Old Password"/>
-          <input type="text" name="newPass" placeholder="New Password"/>
-          <input type="text" name="newPassVerify" placeholder="Re-enter New Password"/>
-          <input type="submit" value="CHANGE" placeholder="CHANGE"/>
+          <input id="oldPassInput" type="text" name="oldPass" placeholder="Old Password"/>
+          <input id="newPassInput" type="text" name="newPass" placeholder="New Password"/>
+          <input id="newPassInput2" type="text" name="newPassVerify" placeholder="Re-enter New Password"/>
+          <input id="changePassInput" type="submit" value="CHANGE" placeholder="CHANGE"/>
         </form>
       </div>
     </div>

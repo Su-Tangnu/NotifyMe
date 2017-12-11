@@ -26,7 +26,7 @@
           You have been successfully logged out.
           </br>
           Click
-          <a href="/NotifyMe/Index.php">
+          <a id="linkToIndex" href="/NotifyMe/Index.php">
             here
           </a>
           to log back in.
