@@ -152,7 +152,7 @@
 </html>
 <?php
 	//If we have a link to add, add it to the database.
-	if( isset($_POST['submit_URL']) ){
+	if(isset($_POST['submit_URL']) ){
 		//sanitize the new URL string.
 		$newURLVal = mysqli_real_escape_string($conn,strip_tags($_POST['newURL']));
 		//SQL to insert the new URL into the database both in the url table and
@@ -227,33 +227,106 @@
 	//change the old value, edit_id to the new value, editURL.
 	if(isset($_POST['edit_URL']) && isset($_POST['editURL'])){
 		//Sanitize the edited URL.
-		$editdURL = mysqli_real_escape_string($conn,strip_tags($_POST['editURL']));
-		//SQL to update the URL in both the urls and user_url_list tables.
-		$edit_sql_urls = "UPDATE urls SET url = '$editdURL' WHERE url='$_GET[edit_id]' ";
-		$edit_sql_user_url_list = "UPDATE user_url_list SET url = '$editdURL' WHERE email='$Email' AND url='$_GET[edit_id]'";
-		//Run the previous two queries.
-		$run_sql_insert_url = mysqli_query($conn , $edit_sql_urls);
-		$run_sql_insert_user_url_list = mysqli_query($conn , $edit_sql_user_url_list);
-		//If the URL was updated in the tables, go to/refresh the homepage.
+		$editedURL = mysqli_real_escape_string($conn,strip_tags($_POST['editURL']));
+
+		$run_sql_insert_user_url_list = false;
+
+		//properURL is the new URL, but it is guaranteed to have http://
+		//in front of it with the following conditional.
+		$properURL = $editedURL;
+    if((substr($properURL,0,4)!='HTTP')&&(substr($properURL,0,4)!='http')&&(substr($properURL,0,4)!='HTTPS')&&(substr($properURL,0,4)!='https')){
+      $properURL = "http://" . $properURL;
+    }
+		//get the headers from the new URL as an associative array.
+		//(The 1 as the second argument means return it as an associative array.)
+		$headers = get_headers($properURL, 1);
+		//If the headers were returned, check that they have either Last-Modified
+		//or an ETag.  If not, delete it from the database and tell the user that
+		//we cannot add it because it does not have the necessary headers.
+    if($headers){
+			//If Last-Modified exists, set it for the URL in the database.
+			if (array_key_exists("Last-Modified", $headers)){
+        $lastModified = "Last-Modified";
+
+				//SQL to update the URL in both the urls and user_url_list tables.
+				//Only update urls if this is the only user with this url.
+				//Otherwise, insert.
+				$edit_sql_urls = "INSERT INTO urls (url) VALUES ('$editedURL')";
+				$get_user_url_list_info = "SELECT * FROM user_url_list WHERE url='$_GET[edit_id]' ";
+				$run_get_info = mysqli_query($conn , $get_user_url_list_info);
+				$count = mysqli_num_rows($run_get_info);
+				if($count == 1){
+					$edit_sql_urls = "UPDATE urls SET url = '$editedURL' WHERE url='$_GET[edit_id]' ";
+				}
+				$edit_sql_user_url_list = "UPDATE user_url_list SET url = '$editedURL' WHERE email='$Email' AND url='$_GET[edit_id]'";
+				//Run the previous two queries.
+				$run_sql_insert_url = mysqli_query($conn , $edit_sql_urls);
+				$run_sql_insert_user_url_list = mysqli_query($conn , $edit_sql_user_url_list);
+				//Update Last-Modified for the new URL.
+        $sql_update = "UPDATE urls SET lastModified = '$headers[$lastModified]' WHERE url = '$editedURL'";
+        $execute_update = mysqli_query($conn,$sql_update);
+        /*if($execute_update){
+          echo "Updated $editedURL Last-Modified.";
+          echo "</br>";
+        }*/
+      }
+			//If ETag exists, set it for the URL in the database.
+      if(array_key_exists("ETag", $headers)){
+				//SQL to update the URL in both the urls and user_url_list tables.
+				//Only update urls if this is the only user with this url.
+				//Otherwise, insert.
+				$edit_sql_urls = "INSERT INTO urls (url) VALUES ('$editedURL')";
+				$get_user_url_list_info = "SELECT * FROM user_url_list WHERE url='$_GET[edit_id]' ";
+				$run_get_info = mysqli_query($conn , $get_user_url_list_info);
+				$count = mysqli_num_rows($run_get_info);
+				if($count == 1){
+					$edit_sql_urls = "UPDATE urls SET url = '$editedURL' WHERE url='$_GET[edit_id]' ";
+				}
+				$edit_sql_user_url_list = "UPDATE user_url_list SET url = '$editedURL' WHERE email='$Email' AND url='$_GET[edit_id]'";
+				//Run the previous two queries.
+				$run_sql_insert_url = mysqli_query($conn , $edit_sql_urls);
+				$run_sql_insert_user_url_list = mysqli_query($conn , $edit_sql_user_url_list);
+				//Update ETag for the new URL.
+				$sql_update = "UPDATE urls SET etag = '$headers[ETag]' WHERE url = '$editedURL'";
+        $execute_update = mysqli_query($conn,$sql_update);
+        /*if($execute_update){
+          echo "Updated $editedURL ETag.";
+          echo "</br>";
+        }*/
+      }
+		}
+		//If the URL was updated in the tables and wasn't deleted later,
+		//go back to/refresh the homepage so that it shows up in the table.
 		if($run_sql_insert_user_url_list){
-				echo "<script>window.location = \"/NotifyMe/userHomepage.php\"; </script>";
+			echo "<script>window.location = \"/NotifyMe/userHomepage.php\"; </script>";
+		}
+		//Otherwise, tell the user that we were unable to add the URL.
+		else{
+			?>
+			<script>alert("URL was not added!\n\nSorry, this URL does not have a Last-Modified value or an Etag value.")</script>
+			<?php
 		}
 	}
+
 	//If the user wants to delete the URL, delete it from the database AND
 	//refresh the homepage.
 	if(isset($_GET['del_id'])){
 		//SQL to delete the del_id url from the urls and user_url_list tables.
 		$del_sql = "DELETE FROM urls WHERE url = '$_GET[del_id]'";
-		$del_sql_user_url_list = "DELETE FROM user_url_list WHERE url= '$_GET[del_id]'";
+		$del_sql_user_url_list = "DELETE FROM user_url_list WHERE (url= '$_GET[del_id]' AND email= '$Email')";
 
-		//Run the previous two sql statements.
-		$run_del_sql = mysqli_query($conn , $del_sql);
+		//Only delete from urls if it is the only one.
+		$get_user_url_list_info = "SELECT * FROM user_url_list WHERE url='$_GET[del_id]' ";
+		$run_get_info = mysqli_query($conn , $get_user_url_list_info);
+		$count = mysqli_num_rows($run_get_info);
+		if($count == 1){
+			//Run the sql statement to delete from urls.
+			$run_del_sql = mysqli_query($conn , $del_sql);
+		}
+		//Run the sql statement to delete from user_url_list where email is user's email.
 		$run_del_sql_user_url_list = mysqli_query($conn , $del_sql_user_url_list);
-		
-		//If we are successful in deleting from the urls, refresh the homepage.
-		//Even if we are unsuccessful in deleting from user_url_list,
-		//cascade will delete it for us.
-		if($run_del_sql){
+
+		if($run_del_sql_user_url_list){
 				echo "<script>window.location = \"/NotifyMe/userHomepage.php\"; </script>";
 		}
 	}
