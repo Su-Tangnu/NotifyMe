@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto:400,500,700,300,100);
+@import url(https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700);
 @import url(https://fonts.googleapis.com/css?family=Lobster);
 
 body {
@@ -126,6 +126,7 @@ th {
   text-align:left;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
   vertical-align:middle;
+  text-align: center;
 }
 
 th:first-child {
@@ -150,6 +151,10 @@ tr:hover td {
   background: #6FA397;
   color: #fbfbfb;
   border-top: 1px solid #22262e;
+}
+
+tr:hover td a {
+  color: #fbfbfb;
 }
 
 tr:first-child {
@@ -185,6 +190,14 @@ td {
   font-size:18px;
   text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
   border-right: 1px solid #C1C3D1;
+}
+
+td a {
+  color: #6FA397;
+}
+
+td:hover a {
+  color: #fbfbfb;
 }
 
 td:last-child {
