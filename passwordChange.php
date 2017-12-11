@@ -45,6 +45,8 @@
                 $result_sqlChangePass = mysqli_query($conn,$sqlChangePass);
                 //If we were able to change the password, tell the user.
             		if($result_sqlChangePass){
+                  //Set the session's password variable to the new password.
+                  $_SESSION['pass'] = $NewPass;
                   ?>
                   <div class="message">
                     Password change successful!
