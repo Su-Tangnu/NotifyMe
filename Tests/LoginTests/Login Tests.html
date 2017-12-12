@@ -10,8 +10,7 @@
 <thead>
 <tr><td rowspan="1" colspan="3">UsernameLoginSuccess</td></tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
     <td>open</td>
     <td>http://localhost/NotifyMe/
         <datalist>
@@ -72,8 +71,7 @@
 <thead>
 <tr><td rowspan="1" colspan="3">EmailLoginSuccess</td></tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
     <td>open</td>
     <td>http://localhost/NotifyMe/
         <datalist>
@@ -125,6 +123,32 @@
             <option>name=newURL</option>
             <option>//input[@id='newURLInput']</option>
             <option>//input</option>
+        </datalist>
+    </td>
+    <td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">LoginFailEmpty</td></tr>
+</thead>
+<tbody>
+<tr>
+    <td>open</td>
+    <td>http://localhost/NotifyMe/
+        <datalist>
+            <option>http://localhost/NotifyMe/</option>
+        </datalist>
+    </td>
+    <td></td>
+</tr>
+<tr>
+    <td>click</td>
+    <td>id=loginInput
+        <datalist>
+            <option>id=loginInput</option>
+            <option>//input[@id='loginInput']</option>
+            <option>//input[3]</option>
         </datalist>
     </td>
     <td></td>
@@ -184,8 +208,7 @@
 <thead>
 <tr><td rowspan="1" colspan="3">LoginFailAccountRecoverySucceed</td></tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
     <td>open</td>
     <td>http://localhost/NotifyMe/
         <datalist>
@@ -293,8 +316,7 @@
 <thead>
 <tr><td rowspan="1" colspan="3">LoginFailAccountRecoveryFailGoBack</td></tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
     <td>open</td>
     <td>http://localhost/NotifyMe/
         <datalist>

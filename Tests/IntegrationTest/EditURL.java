@@ -8,7 +8,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 
-public class Insert {
+public class Edit {
   private WebDriver driver;
   private String baseUrl;
   private boolean acceptNextAlert = true;
@@ -22,7 +22,13 @@ public class Insert {
   }
 
   @Test
-  public void testInsert() throws Exception {
+  public void testEdit() throws Exception {
+    driver.get("http://localhost/NotifyMe/userHomepage.php");
+    driver.findElement(By.xpath("(//a[contains(text(),'Edit')])[2]")).click();
+    driver.findElement(By.id("editURLInput")).click();
+    driver.findElement(By.id("editURLInput")).clear();
+    driver.findElement(By.id("editURLInput")).sendKeys("pokemongohub.net");
+    driver.findElement(By.id("editURLSubmitInput")).click();
   }
 
   @AfterClass(alwaysRun = true)

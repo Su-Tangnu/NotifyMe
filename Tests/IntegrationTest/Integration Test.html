@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+	<title>Integration Test</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">LogIn</td></tr>
+</thead>
+<tbody><tr>
+    <td>open</td>
+    <td>http://localhost/NotifyMe/
+        <datalist>
+            <option>http://localhost/NotifyMe/</option>
+        </datalist>
+    </td>
+    <td></td>
+</tr>
+<tr>
+    <td>click</td>
+    <td>id=emailInput
+        <datalist>
+            <option>id=emailInput</option>
+            <option>name=email</option>
+            <option>//input[@id='emailInput']</option>
+            <option>//input</option>
+        </datalist>
+    </td>
+    <td></td>
+</tr>
+<tr>
+    <td>type</td>
+    <td>id=emailInput
+        <datalist>
+            <option>id=emailInput</option>
+            <option>name=email</option>
+            <option>//input[@id='emailInput']</option>
+            <option>//input</option>
+        </datalist>
+    </td>
+    <td>matthewd.manning@gmail.com</td>
+</tr>
+<tr>
+    <td>click</td>
+    <td>id=loginInput
+        <datalist>
+            <option>id=loginInput</option>
+            <option>//input[@id='loginInput']</option>
+            <option>//input[3]</option>
+        </datalist>
+    </td>
+    <td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Edit</td></tr>
+</thead>
+<tbody><tr>
+    <td>open</td>
+    <td>http://localhost/NotifyMe/userHomepage.php
+        <datalist>
+            <option>http://localhost/NotifyMe/userHomepage.php</option>
+        </datalist>
+    </td>
+    <td></td>
+</tr>
+<tr>
+    <td>click</td>
+    <td>xpath=(//a[contains(text(),'Edit')])[2]
+        <datalist>
+            <option>xpath=(//a[contains(text(),'Edit')])[2]</option>
+            <option>xpath=(//a[@id='linkToHomepageEdit'])[2]</option>
+            <option>//a[contains(@href, '/NotifyMe/userHomepage.php?edit_id=bloomberg.com')]</option>
+            <option>//tr[2]/td[4]/a</option>
+        </datalist>
+    </td>
+    <td></td>
+</tr>
+<tr>
+    <td>click</td>
+    <td>id=editURLInput
+        <datalist>
+            <option>id=editURLInput</option>
+            <option>name=editURL</option>
+            <option>//input[@id='editURLInput']</option>
+            <option>//input</option>
+        </datalist>
+    </td>
+    <td></td>
+</tr>
+<tr>
+    <td>type</td>
+    <td>id=editURLInput
+        <datalist>
+            <option>id=editURLInput</option>
+            <option>name=editURL</option>
+            <option>//input[@id='editURLInput']</option>
+            <option>//input</option>
+        </datalist>
+    </td>
+    <td>pokemongohub.net</td>
+</tr>
+<tr>
+    <td>click</td>
+    <td>id=editURLSubmitInput
+        <datalist>
+            <option>id=editURLSubmitInput</option>
+            <option>name=edit_URL</option>
+            <option>//input[@id='editURLSubmitInput']</option>
+            <option>//input[2]</option>
+        </datalist>
+    </td>
+    <td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">delete</td></tr>
+</thead>
+<tbody><tr>
+    <td>open</td>
+    <td>http://localhost/NotifyMe/userHomepage.php
+        <datalist>
+            <option>http://localhost/NotifyMe/userHomepage.php</option>
+        </datalist>
+    </td>
+    <td></td>
+</tr>
+<tr>
+    <td>click</td>
+    <td>xpath=(//a[contains(text(),'Delete')])[4]
+        <datalist>
+            <option>xpath=(//a[contains(text(),'Delete')])[4]</option>
+            <option>xpath=(//a[@id='linkToHomepageDelete'])[4]</option>
+            <option>//a[contains(@href, '/NotifyMe/userHomepage.php?del_id=xkcd.com')]</option>
+            <option>//tr[4]/td[5]/a</option>
+        </datalist>
+    </td>
+    <td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Insert</td></tr>
+</thead>
+<tbody>
+<tr>
+    <td>open</td>
+    <td>http://localhost/NotifyMe/userHomepage.php
+        <datalist>
+            <option>http://localhost/NotifyMe/userHomepage.php</option>
+        </datalist>
+    </td>
+    <td></td>
+</tr>
+<tr>
+    <td>click</td>
+    <td>id=newURLInput
+        <datalist>
+            <option>id=newURLInput</option>
+            <option>name=newURL</option>
+            <option>//input[@id='newURLInput']</option>
+            <option>//input</option>
+        </datalist>
+    </td>
+    <td></td>
+</tr>
+<tr>
+    <td>type</td>
+    <td>id=newURLInput
+        <datalist>
+            <option>id=newURLInput</option>
+            <option>name=newURL</option>
+            <option>//input[@id='newURLInput']</option>
+            <option>//input</option>
+        </datalist>
+    </td>
+    <td>smogon.com</td>
+</tr>
+<tr>
+    <td>click</td>
+    <td>id=addURLInput
+        <datalist>
+            <option>id=addURLInput</option>
+            <option>name=submit_URL</option>
+            <option>//input[@id='addURLInput']</option>
+            <option>//input[2]</option>
+        </datalist>
+    </td>
+    <td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">VisitURL</td></tr>
+</thead>
+<tbody><tr>
+    <td>open</td>
+    <td>http://localhost/NotifyMe/userHomepage.php
+        <datalist>
+            <option>http://localhost/NotifyMe/userHomepage.php</option>
+        </datalist>
+    </td>
+    <td></td>
+</tr>
+<tr>
+    <td>click</td>
+    <td>id=linkToURL4
+        <datalist>
+            <option>id=linkToURL4</option>
+            <option>xpath=(//a[contains(text(),'Visit this page')])[4]</option>
+            <option>//a[@id='linkToURL4']</option>
+            <option>//a[@href='http://xkcd.com']</option>
+            <option>//tr[4]/td[3]/a</option>
+        </datalist>
+    </td>
+    <td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

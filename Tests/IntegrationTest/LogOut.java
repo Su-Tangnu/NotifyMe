@@ -8,7 +8,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 
-public class Loggin {
+public class LogOut {
   private WebDriver driver;
   private String baseUrl;
   private boolean acceptNextAlert = true;
@@ -22,18 +22,8 @@ public class Loggin {
   }
 
   @Test
-  public void testLoggin() throws Exception {
-    driver.get("http://localhost/NotifyMe/");
-    driver.findElement(By.id("emailInput")).click();
-    driver.findElement(By.id("emailInput")).clear();
-    driver.findElement(By.id("emailInput")).sendKeys("matthew");
-    driver.findElement(By.id("emailInput")).clear();
-    driver.findElement(By.id("emailInput")).sendKeys("matthewd.");
-    driver.findElement(By.id("emailInput")).clear();
-    driver.findElement(By.id("emailInput")).sendKeys("matthewd.manning");
-    driver.findElement(By.id("emailInput")).clear();
-    driver.findElement(By.id("emailInput")).sendKeys("matthewd.manning@gmail.com");
-    driver.findElement(By.id("loginInput")).click();
+  public void testLogOut() throws Exception {
+    driver.get("http://localhost/NotifyMe/userHomepage.php");
     driver.findElement(By.id("linkToLogout")).click();
     driver.findElement(By.id("linkToIndex")).click();
   }

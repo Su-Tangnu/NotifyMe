@@ -8,7 +8,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 
-public class Edit {
+public class Loggin {
   private WebDriver driver;
   private String baseUrl;
   private boolean acceptNextAlert = true;
@@ -22,13 +22,12 @@ public class Edit {
   }
 
   @Test
-  public void testEdit() throws Exception {
-    driver.get("http://localhost/NotifyMe/userHomepage.php");
-    driver.findElement(By.xpath("(//a[contains(text(),'Edit')])[2]")).click();
-    driver.findElement(By.id("editURLInput")).click();
-    driver.findElement(By.id("editURLInput")).clear();
-    driver.findElement(By.id("editURLInput")).sendKeys("www.bloomberg.com");
-    driver.findElement(By.id("editURLSubmitInput")).click();
+  public void testLoggin() throws Exception {
+    driver.get("http://localhost/NotifyMe/");
+    driver.findElement(By.id("emailInput")).click();
+    driver.findElement(By.id("emailInput")).clear();
+    driver.findElement(By.id("emailInput")).sendKeys("matthewd.manning@gmail.com");
+    driver.findElement(By.id("loginInput")).click();
   }
 
   @AfterClass(alwaysRun = true)
