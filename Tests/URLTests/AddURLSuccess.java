@@ -17,13 +17,13 @@ public class AddURLSuccess {
   @BeforeClass(alwaysRun = true)
   public void setUp() throws Exception {
     driver = new FirefoxDriver();
-    baseUrl = "https://www.katalon.com/";
+    baseUrl = "http://localhost/NotifyMe/";
     driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
   }
 
   @Test
   public void testAddURLSuccess() throws Exception {
-    driver.get("http://localhost/NotifyMe/Index.php");
+    driver.get("http://localhost/NotifyMe/");
     driver.findElement(By.id("emailInput")).click();
     driver.findElement(By.id("emailInput")).clear();
     driver.findElement(By.id("emailInput")).sendKeys("mdmanning@gmail.com");
