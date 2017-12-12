@@ -1,0 +1,503 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+	<title>Signup Tests</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">SignupNoUsernameSuccess</td></tr>
+</thead>
+<tbody>
+<tr>
+    <td>open</td>
+    <td>http://localhost/NotifyMe/
+        <datalist>
+            <option>http://localhost/NotifyMe/</option>
+        </datalist>
+    </td>
+    <td></td>
+</tr>
+<tr>
+    <td>click</td>
+    <td>id=signup
+        <datalist>
+            <option>id=signup</option>
+            <option>link=Create an account</option>
+            <option>//a[contains(text(),'Create an account')]</option>
+            <option>//a[@id='signup']</option>
+            <option>//a[contains(@href, 'signup.php')]</option>
+            <option>//a</option>
+        </datalist>
+    </td>
+    <td></td>
+</tr>
+<tr>
+    <td>click</td>
+    <td>id=emailInput
+        <datalist>
+            <option>id=emailInput</option>
+            <option>name=email</option>
+            <option>//input[@id='emailInput']</option>
+            <option>//input</option>
+        </datalist>
+    </td>
+    <td></td>
+</tr>
+<tr>
+    <td>type</td>
+    <td>id=emailInput
+        <datalist>
+            <option>id=emailInput</option>
+            <option>name=email</option>
+            <option>//input[@id='emailInput']</option>
+            <option>//input</option>
+        </datalist>
+    </td>
+    <td>m@mail.com</td>
+</tr>
+<tr>
+    <td>click</td>
+    <td>id=signupInput
+        <datalist>
+            <option>id=signupInput</option>
+            <option>//input[@id='signupInput']</option>
+            <option>//input[4]</option>
+        </datalist>
+    </td>
+    <td></td>
+</tr>
+<tr>
+    <td>click</td>
+    <td>id=newURLInput
+        <datalist>
+            <option>id=newURLInput</option>
+            <option>name=newURL</option>
+            <option>//input[@id='newURLInput']</option>
+            <option>//input</option>
+        </datalist>
+    </td>
+    <td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">SignupGotoLogin</td></tr>
+</thead>
+<tbody>
+<tr>
+    <td>open</td>
+    <td>http://localhost/NotifyMe/signup.php
+        <datalist>
+            <option>http://localhost/NotifyMe/signup.php</option>
+        </datalist>
+    </td>
+    <td></td>
+</tr>
+<tr>
+    <td>click</td>
+    <td>id=linkToIndex
+        <datalist>
+            <option>id=linkToIndex</option>
+            <option>link=Log In</option>
+            <option>//a[contains(text(),'Log In')]</option>
+            <option>//a[@id='linkToIndex']</option>
+            <option>//a[contains(@href, 'index.php')]</option>
+            <option>//a</option>
+        </datalist>
+    </td>
+    <td></td>
+</tr>
+<tr>
+    <td>click</td>
+    <td>id=emailInput
+        <datalist>
+            <option>id=emailInput</option>
+            <option>name=email</option>
+            <option>//input[@id='emailInput']</option>
+            <option>//input</option>
+        </datalist>
+    </td>
+    <td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">SignupEverythingSuccess</td></tr>
+</thead>
+<tbody>
+<tr>
+    <td>open</td>
+    <td>http://localhost/NotifyMe/
+        <datalist>
+            <option>http://localhost/NotifyMe/</option>
+        </datalist>
+    </td>
+    <td></td>
+</tr>
+<tr>
+    <td>click</td>
+    <td>id=signup
+        <datalist>
+            <option>id=signup</option>
+            <option>link=Create an account</option>
+            <option>//a[contains(text(),'Create an account')]</option>
+            <option>//a[@id='signup']</option>
+            <option>//a[contains(@href, 'signup.php')]</option>
+            <option>//a</option>
+        </datalist>
+    </td>
+    <td></td>
+</tr>
+<tr>
+    <td>click</td>
+    <td>id=emailInput
+        <datalist>
+            <option>id=emailInput</option>
+            <option>name=email</option>
+            <option>//input[@id='emailInput']</option>
+            <option>//input</option>
+        </datalist>
+    </td>
+    <td></td>
+</tr>
+<tr>
+    <td>type</td>
+    <td>id=emailInput
+        <datalist>
+            <option>id=emailInput</option>
+            <option>name=email</option>
+            <option>//input[@id='emailInput']</option>
+            <option>//input</option>
+        </datalist>
+    </td>
+    <td>d@mail.com</td>
+</tr>
+<tr>
+    <td>click</td>
+    <td>id=usernameInput
+        <datalist>
+            <option>id=usernameInput</option>
+            <option>name=username</option>
+            <option>//input[@id='usernameInput']</option>
+            <option>//input[2]</option>
+        </datalist>
+    </td>
+    <td></td>
+</tr>
+<tr>
+    <td>type</td>
+    <td>id=usernameInput
+        <datalist>
+            <option>id=usernameInput</option>
+            <option>name=username</option>
+            <option>//input[@id='usernameInput']</option>
+            <option>//input[2]</option>
+        </datalist>
+    </td>
+    <td>Dragon</td>
+</tr>
+<tr>
+    <td>click</td>
+    <td>id=passInput
+        <datalist>
+            <option>id=passInput</option>
+            <option>name=pass</option>
+            <option>//input[@id='passInput']</option>
+            <option>//input[3]</option>
+        </datalist>
+    </td>
+    <td></td>
+</tr>
+<tr>
+    <td>type</td>
+    <td>id=passInput
+        <datalist>
+            <option>id=passInput</option>
+            <option>name=pass</option>
+            <option>//input[@id='passInput']</option>
+            <option>//input[3]</option>
+        </datalist>
+    </td>
+    <td>doragon</td>
+</tr>
+<tr>
+    <td>click</td>
+    <td>id=signupInput
+        <datalist>
+            <option>id=signupInput</option>
+            <option>//input[@id='signupInput']</option>
+            <option>//input[4]</option>
+        </datalist>
+    </td>
+    <td></td>
+</tr>
+<tr>
+    <td>click</td>
+    <td>id=newURLInput
+        <datalist>
+            <option>id=newURLInput</option>
+            <option>name=newURL</option>
+            <option>//input[@id='newURLInput']</option>
+            <option>//input</option>
+        </datalist>
+    </td>
+    <td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">SignupFailEmailTaken</td></tr>
+</thead>
+<tbody>
+<tr>
+    <td>open</td>
+    <td>http://localhost/NotifyMe/Index.php
+        <datalist>
+            <option>http://localhost/NotifyMe/Index.php</option>
+        </datalist>
+    </td>
+    <td></td>
+</tr>
+<tr>
+    <td>click</td>
+    <td>id=signup
+        <datalist>
+            <option>id=signup</option>
+            <option>link=Create an account</option>
+            <option>//a[contains(text(),'Create an account')]</option>
+            <option>//a[@id='signup']</option>
+            <option>//a[contains(@href, 'signup.php')]</option>
+            <option>//a</option>
+        </datalist>
+    </td>
+    <td></td>
+</tr>
+<tr>
+    <td>click</td>
+    <td>id=emailInput
+        <datalist>
+            <option>id=emailInput</option>
+            <option>name=email</option>
+            <option>//input[@id='emailInput']</option>
+            <option>//input</option>
+        </datalist>
+    </td>
+    <td></td>
+</tr>
+<tr>
+    <td>type</td>
+    <td>id=emailInput
+        <datalist>
+            <option>id=emailInput</option>
+            <option>name=email</option>
+            <option>//input[@id='emailInput']</option>
+            <option>//input</option>
+        </datalist>
+    </td>
+    <td>matthewd.manning@gmail.com</td>
+</tr>
+<tr>
+    <td>click</td>
+    <td>id=passInput
+        <datalist>
+            <option>id=passInput</option>
+            <option>name=pass</option>
+            <option>//input[@id='passInput']</option>
+            <option>//input[3]</option>
+        </datalist>
+    </td>
+    <td></td>
+</tr>
+<tr>
+    <td>type</td>
+    <td>id=passInput
+        <datalist>
+            <option>id=passInput</option>
+            <option>name=pass</option>
+            <option>//input[@id='passInput']</option>
+            <option>//input[3]</option>
+        </datalist>
+    </td>
+    <td>asdf</td>
+</tr>
+<tr>
+    <td>click</td>
+    <td>id=signupInput
+        <datalist>
+            <option>id=signupInput</option>
+            <option>//input[@id='signupInput']</option>
+            <option>//input[4]</option>
+        </datalist>
+    </td>
+    <td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">SignupFailUsernameTaken</td></tr>
+</thead>
+<tbody>
+<tr>
+    <td>open</td>
+    <td>http://localhost/NotifyMe/Index.php
+        <datalist>
+            <option>http://localhost/NotifyMe/Index.php</option>
+        </datalist>
+    </td>
+    <td></td>
+</tr>
+<tr>
+    <td>click</td>
+    <td>id=signup
+        <datalist>
+            <option>id=signup</option>
+            <option>link=Create an account</option>
+            <option>//a[contains(text(),'Create an account')]</option>
+            <option>//a[@id='signup']</option>
+            <option>//a[contains(@href, 'signup.php')]</option>
+            <option>//a</option>
+        </datalist>
+    </td>
+    <td></td>
+</tr>
+<tr>
+    <td>click</td>
+    <td>id=emailInput
+        <datalist>
+            <option>id=emailInput</option>
+            <option>name=email</option>
+            <option>//input[@id='emailInput']</option>
+            <option>//input</option>
+        </datalist>
+    </td>
+    <td></td>
+</tr>
+<tr>
+    <td>type</td>
+    <td>id=emailInput
+        <datalist>
+            <option>id=emailInput</option>
+            <option>name=email</option>
+            <option>//input[@id='emailInput']</option>
+            <option>//input</option>
+        </datalist>
+    </td>
+    <td>j@mail.com</td>
+</tr>
+<tr>
+    <td>click</td>
+    <td>id=usernameInput
+        <datalist>
+            <option>id=usernameInput</option>
+            <option>name=username</option>
+            <option>//input[@id='usernameInput']</option>
+            <option>//input[2]</option>
+        </datalist>
+    </td>
+    <td></td>
+</tr>
+<tr>
+    <td>type</td>
+    <td>id=usernameInput
+        <datalist>
+            <option>id=usernameInput</option>
+            <option>name=username</option>
+            <option>//input[@id='usernameInput']</option>
+            <option>//input[2]</option>
+        </datalist>
+    </td>
+    <td>Matthew Manning</td>
+</tr>
+<tr>
+    <td>click</td>
+    <td>id=signupInput
+        <datalist>
+            <option>id=signupInput</option>
+            <option>//input[@id='signupInput']</option>
+            <option>//input[4]</option>
+        </datalist>
+    </td>
+    <td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">SignupFailNoEmail</td></tr>
+</thead>
+<tbody>
+<tr>
+    <td>open</td>
+    <td>http://localhost/NotifyMe/
+        <datalist>
+            <option>http://localhost/NotifyMe/</option>
+        </datalist>
+    </td>
+    <td></td>
+</tr>
+<tr>
+    <td>click</td>
+    <td>id=signup
+        <datalist>
+            <option>id=signup</option>
+            <option>link=Create an account</option>
+            <option>//a[contains(text(),'Create an account')]</option>
+            <option>//a[@id='signup']</option>
+            <option>//a[contains(@href, 'signup.php')]</option>
+            <option>//a</option>
+        </datalist>
+    </td>
+    <td></td>
+</tr>
+<tr>
+    <td>click</td>
+    <td>id=usernameInput
+        <datalist>
+            <option>id=usernameInput</option>
+            <option>name=username</option>
+            <option>//input[@id='usernameInput']</option>
+            <option>//input[2]</option>
+        </datalist>
+    </td>
+    <td></td>
+</tr>
+<tr>
+    <td>type</td>
+    <td>id=usernameInput
+        <datalist>
+            <option>id=usernameInput</option>
+            <option>name=username</option>
+            <option>//input[@id='usernameInput']</option>
+            <option>//input[2]</option>
+        </datalist>
+    </td>
+    <td>MDM</td>
+</tr>
+<tr>
+    <td>type</td>
+    <td>id=passInput
+        <datalist>
+            <option>id=passInput</option>
+            <option>name=pass</option>
+            <option>//input[@id='passInput']</option>
+            <option>//input[3]</option>
+        </datalist>
+    </td>
+    <td>asdf</td>
+</tr>
+<tr>
+    <td>click</td>
+    <td>id=signupInput
+        <datalist>
+            <option>id=signupInput</option>
+            <option>//input[@id='signupInput']</option>
+            <option>//input[4]</option>
+        </datalist>
+    </td>
+    <td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

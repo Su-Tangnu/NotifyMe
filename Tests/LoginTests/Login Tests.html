@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+	<title>Login Tests</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">UsernameLoginSuccess</td></tr>
+</thead>
+<tbody>
+<tr>
+    <td>open</td>
+    <td>http://localhost/NotifyMe/
+        <datalist>
+            <option>http://localhost/NotifyMe/</option>
+        </datalist>
+    </td>
+    <td></td>
+</tr>
+<tr>
+    <td>click</td>
+    <td>id=emailInput
+        <datalist>
+            <option>id=emailInput</option>
+            <option>name=email</option>
+            <option>//input[@id='emailInput']</option>
+            <option>//input</option>
+        </datalist>
+    </td>
+    <td></td>
+</tr>
+<tr>
+    <td>type</td>
+    <td>id=emailInput
+        <datalist>
+            <option>id=emailInput</option>
+            <option>name=email</option>
+            <option>//input[@id='emailInput']</option>
+            <option>//input</option>
+        </datalist>
+    </td>
+    <td>Matthew Manning</td>
+</tr>
+<tr>
+    <td>click</td>
+    <td>id=loginInput
+        <datalist>
+            <option>id=loginInput</option>
+            <option>//input[@id='loginInput']</option>
+            <option>//input[3]</option>
+        </datalist>
+    </td>
+    <td></td>
+</tr>
+<tr>
+    <td>click</td>
+    <td>id=newURLInput
+        <datalist>
+            <option>id=newURLInput</option>
+            <option>name=newURL</option>
+            <option>//input[@id='newURLInput']</option>
+            <option>//input</option>
+        </datalist>
+    </td>
+    <td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">EmailLoginSuccess</td></tr>
+</thead>
+<tbody>
+<tr>
+    <td>open</td>
+    <td>http://localhost/NotifyMe/
+        <datalist>
+            <option>http://localhost/NotifyMe/</option>
+        </datalist>
+    </td>
+    <td></td>
+</tr>
+<tr>
+    <td>click</td>
+    <td>id=emailInput
+        <datalist>
+            <option>id=emailInput</option>
+            <option>name=email</option>
+            <option>//input[@id='emailInput']</option>
+            <option>//input</option>
+        </datalist>
+    </td>
+    <td></td>
+</tr>
+<tr>
+    <td>type</td>
+    <td>id=emailInput
+        <datalist>
+            <option>id=emailInput</option>
+            <option>name=email</option>
+            <option>//input[@id='emailInput']</option>
+            <option>//input</option>
+        </datalist>
+    </td>
+    <td>matthewd.manning@gmail.com</td>
+</tr>
+<tr>
+    <td>click</td>
+    <td>id=loginInput
+        <datalist>
+            <option>id=loginInput</option>
+            <option>//input[@id='loginInput']</option>
+            <option>//input[3]</option>
+        </datalist>
+    </td>
+    <td></td>
+</tr>
+<tr>
+    <td>click</td>
+    <td>id=newURLInput
+        <datalist>
+            <option>id=newURLInput</option>
+            <option>name=newURL</option>
+            <option>//input[@id='newURLInput']</option>
+            <option>//input</option>
+        </datalist>
+    </td>
+    <td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">EmailLoginFail</td></tr>
+</thead>
+<tbody>
+<tr>
+    <td>open</td>
+    <td>http://localhost/NotifyMe/
+        <datalist>
+            <option>http://localhost/NotifyMe/</option>
+        </datalist>
+    </td>
+    <td></td>
+</tr>
+<tr>
+    <td>click</td>
+    <td>id=emailInput
+        <datalist>
+            <option>id=emailInput</option>
+            <option>name=email</option>
+            <option>//input[@id='emailInput']</option>
+            <option>//input</option>
+        </datalist>
+    </td>
+    <td></td>
+</tr>
+<tr>
+    <td>type</td>
+    <td>id=emailInput
+        <datalist>
+            <option>id=emailInput</option>
+            <option>name=email</option>
+            <option>//input[@id='emailInput']</option>
+            <option>//input</option>
+        </datalist>
+    </td>
+    <td>mdm</td>
+</tr>
+<tr>
+    <td>click</td>
+    <td>id=loginInput
+        <datalist>
+            <option>id=loginInput</option>
+            <option>//input[@id='loginInput']</option>
+            <option>//input[3]</option>
+        </datalist>
+    </td>
+    <td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">LoginFailAccountRecoverySucceed</td></tr>
+</thead>
+<tbody>
+<tr>
+    <td>open</td>
+    <td>http://localhost/NotifyMe/
+        <datalist>
+            <option>http://localhost/NotifyMe/</option>
+        </datalist>
+    </td>
+    <td></td>
+</tr>
+<tr>
+    <td>click</td>
+    <td>id=emailInput
+        <datalist>
+            <option>id=emailInput</option>
+            <option>name=email</option>
+            <option>//input[@id='emailInput']</option>
+            <option>//input</option>
+        </datalist>
+    </td>
+    <td></td>
+</tr>
+<tr>
+    <td>type</td>
+    <td>id=emailInput
+        <datalist>
+            <option>id=emailInput</option>
+            <option>name=email</option>
+            <option>//input[@id='emailInput']</option>
+            <option>//input</option>
+        </datalist>
+    </td>
+    <td>mdm</td>
+</tr>
+<tr>
+    <td>click</td>
+    <td>id=loginInput
+        <datalist>
+            <option>id=loginInput</option>
+            <option>//input[@id='loginInput']</option>
+            <option>//input[3]</option>
+        </datalist>
+    </td>
+    <td></td>
+</tr>
+<tr>
+    <td>click</td>
+    <td>id=accountRecovery
+        <datalist>
+            <option>id=accountRecovery</option>
+            <option>link=Try recovering your account here.</option>
+            <option>//a[contains(text(),'Try recovering your account here.')]</option>
+            <option>//a[@id='accountRecovery']</option>
+            <option>//a[contains(@href, 'accountRecovery.php')]</option>
+            <option>//a</option>
+        </datalist>
+    </td>
+    <td></td>
+</tr>
+<tr>
+    <td>click</td>
+    <td>id=emailInput
+        <datalist>
+            <option>id=emailInput</option>
+            <option>name=email</option>
+            <option>//input[@id='emailInput']</option>
+            <option>//input</option>
+        </datalist>
+    </td>
+    <td></td>
+</tr>
+<tr>
+    <td>type</td>
+    <td>id=emailInput
+        <datalist>
+            <option>id=emailInput</option>
+            <option>name=email</option>
+            <option>//input[@id='emailInput']</option>
+            <option>//input</option>
+        </datalist>
+    </td>
+    <td>mdmanning@gmail.com</td>
+</tr>
+<tr>
+    <td>click</td>
+    <td>id=accountRecoveryInput
+        <datalist>
+            <option>id=accountRecoveryInput</option>
+            <option>//input[@id='accountRecoveryInput']</option>
+            <option>//input[3]</option>
+        </datalist>
+    </td>
+    <td></td>
+</tr>
+<tr>
+    <td>click</td>
+    <td>id=linkToIndexSuccess
+        <datalist>
+            <option>id=linkToIndex</option>
+            <option>id=linkToIndexSuccess</option>
+        </datalist>
+    </td>
+    <td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">LoginFailAccountRecoveryFailGoBack</td></tr>
+</thead>
+<tbody>
+<tr>
+    <td>open</td>
+    <td>http://localhost/NotifyMe/
+        <datalist>
+            <option>http://localhost/NotifyMe/</option>
+        </datalist>
+    </td>
+    <td></td>
+</tr>
+<tr>
+    <td>click</td>
+    <td>id=emailInput
+        <datalist>
+            <option>id=emailInput</option>
+            <option>name=email</option>
+            <option>//input[@id='emailInput']</option>
+            <option>//input</option>
+        </datalist>
+    </td>
+    <td></td>
+</tr>
+<tr>
+    <td>type</td>
+    <td>id=emailInput
+        <datalist>
+            <option>id=emailInput</option>
+            <option>name=email</option>
+            <option>//input[@id='emailInput']</option>
+            <option>//input</option>
+        </datalist>
+    </td>
+    <td>mdm</td>
+</tr>
+<tr>
+    <td>click</td>
+    <td>id=loginInput
+        <datalist>
+            <option>id=loginInput</option>
+            <option>//input[@id='loginInput']</option>
+            <option>//input[3]</option>
+        </datalist>
+    </td>
+    <td></td>
+</tr>
+<tr>
+    <td>click</td>
+    <td>id=accountRecovery
+        <datalist>
+            <option>id=accountRecovery</option>
+            <option>link=Try recovering your account here.</option>
+            <option>//a[contains(text(),'Try recovering your account here.')]</option>
+            <option>//a[@id='accountRecovery']</option>
+            <option>//a[contains(@href, 'accountRecovery.php')]</option>
+            <option>//a</option>
+        </datalist>
+    </td>
+    <td></td>
+</tr>
+<tr>
+    <td>click</td>
+    <td>id=emailInput
+        <datalist>
+            <option>id=emailInput</option>
+            <option>name=email</option>
+            <option>//input[@id='emailInput']</option>
+            <option>//input</option>
+        </datalist>
+    </td>
+    <td></td>
+</tr>
+<tr>
+    <td>type</td>
+    <td>id=emailInput
+        <datalist>
+            <option>id=emailInput</option>
+            <option>name=email</option>
+            <option>//input[@id='emailInput']</option>
+            <option>//input</option>
+        </datalist>
+    </td>
+    <td>b@mail.com</td>
+</tr>
+<tr>
+    <td>click</td>
+    <td>id=accountRecoveryInput
+        <datalist>
+            <option>id=accountRecoveryInput</option>
+            <option>//input[@id='accountRecoveryInput']</option>
+            <option>//input[3]</option>
+        </datalist>
+    </td>
+    <td></td>
+</tr>
+<tr>
+    <td>click</td>
+    <td>id=linkToIndex
+        <datalist>
+            <option>id=linkToIndex</option>
+            <option>link=here</option>
+            <option>//a[contains(text(),'here')]</option>
+            <option>//a[@id='linkToIndex']</option>
+            <option>//a[contains(@href, '/NotifyMe/Index.php')]</option>
+            <option>//a</option>
+        </datalist>
+    </td>
+    <td></td>
+</tr>
+</tbody></table>
+</body>
+</html>
