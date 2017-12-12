@@ -69,7 +69,7 @@
                 <div class="submessage">
                   </br>
                   Click
-                  <a id="linkToIndex" href="/NotifyMe/Index.php">
+                  <a id="linkToIndexSuccess" href="/NotifyMe/Index.php">
                     here
                   </a>
                   to log in.
